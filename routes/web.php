@@ -39,6 +39,7 @@ Route::post('/update-cart', 'ProductController@updateCart')->name('product.updat
 Route::get('/product-shipping', 'ProductController@productShipping')->name('home.shipping.product');
 Route::post('/product-shipping', 'ProductController@cartShipping')->name('home.shipping.cart');
 Route::get('/product-checkout', 'ProductController@productCheckout')->name('home.checkout.product');
+Route::post('/order-submit', 'ProductController@orderSubmit')->name('order.submit');
 
 
 Route::get('/', 'PagesController@index')->name('home'); //   public home page

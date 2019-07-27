@@ -7,6 +7,8 @@ use App\Product;
 use App\Author;
 use App\Publication;
 use App\Category;
+use App\Order;
+use App\OrderDetail;
 use Cart;
 use Session;
 
@@ -38,10 +40,9 @@ class ProductController extends Controller
     public function getCart() {
       $activePage = "";
       $cartProducts = Cart::Content();
-      $products = Cart::Content();
       $authors = Author::orderBy('NAME', 'asc')->get();
       $publications = Publication::orderBy('NAME', 'asc')->get();
-      return view('public_user.pages.cart.add_to_cart', ['cartProducts' => $products, 'activePage'=>$activePage, 'authors'=>$authors, 'publications'=>$publications]);
+      return view('public_user.pages.cart.add_to_cart', ['cartProducts' => $cartProducts, 'activePage'=>$activePage, 'authors'=>$authors, 'publications'=>$publications]);
     }
 
     public function updateCart(Request $request) {
@@ -119,4 +120,50 @@ class ProductController extends Controller
       'activePage'=>$activePage, 'authors'=>$authors, 'publications'=>$publications]);
     }
 
+    // Submit Order
+    public function orderSubmit(Request $request) {
+        $products  = Cart::Content();
+        $order     = new Order();
+        $totalQty  = 0;
+        $totalItem = 0;
+        $cartTotal = 0;
+
+        foreach ($products as $product) {
+            $totalQty += $product->qty;
+            $totalItem++;
+            $cartTotal += ($product->qty * $product->price);
+        }
+
+        $order->email          = session('email');
+        $order->name           = session('customer_name');
+        $order->mobile         = session('customer_mobile');
+        $order->total_price    = $cartTotal;
+        $order->shipping_cost  = session('delivery_charge');
+        $order->contact_person = session('contact_person');
+        $order->contact_mobile = session('reciver_number');
+        $order->save();
+
+        foreach ($products as $product) {
+          $order_detail              = new OrderDetail();
+
+          $order_detail->order_id    = $order->id;
+          $order_detail->product_id  = $product->id;
+          $order_detail->quantity    = $product->qty;
+          $order_detail->price       = $product->price;
+          $order_detail->save();
+        }
+
+        Cart::destroy();
+        $request->session()->put('customer_name', '');
+        $request->session()->put('email', '');
+        $request->session()->put('customer_mobile', '');
+        $request->session()->put('contact_person', '');
+        $request->session()->put('reciver_number', '');
+        $request->session()->put('zone', '');
+        $request->session()->put('address', '');
+        $request->session()->put('delivery_charge', 0);
+
+        session()->flash('success', 'Order submit successful, We will contact with you as early as possible');
+        return redirect(route('home'));
+    }
 }

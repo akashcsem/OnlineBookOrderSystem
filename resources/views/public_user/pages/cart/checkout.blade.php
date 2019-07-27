@@ -102,7 +102,10 @@
                 <p class="mt-3">
                   <a class="btn btn-sm btn-outline-warning px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
                   <a class="btn btn-sm btn-outline-info px-4" style="border-radius: 50px;" href="{{ route('home.shipping.product') }}">Preview order</a>
-                  <a class="btn btn-sm btn-outline-success px-4 float-right" onclick="dropOrder()" style="border-radius: 50px;" href="#">Submit order</a>
+                  <form action="{{ route('order.submit') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-success px-4 float-right" style="border-radius: 50px;">Submit Order</button>
+                  </form>
                 </p>
             </div>
 
@@ -233,17 +236,6 @@
 
 
 
-
-
-      {{-- <table class="table mt-5">
-        <tfoot class="p-5">
-          <tr>
-            <td colspan="2">
-                <a class="btn btn-sm btn-primary px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
-            </td>
-          </tr>
-        </tfoot>
-      </table> --}}
     </div>
 
 

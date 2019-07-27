@@ -14,12 +14,23 @@
 
 
 @section('main-content')
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      @if (session()->has('success'))
+        <div class="alert alert-success">
+          <strong>Success!</strong>
+          {{ Session::get('success') }}
+        </div>
+      @endif
+    </div>
+  </div>
   {{-- <div id="hot"> --}}
     @include('public_user.inc.banner_slider')
     {{-- Book group --}}
     @include('public_user.inc.book_group')
 
     <div class="row">
+
       <div class="col-md-12 mx-auto">
         <div class="row">
 
