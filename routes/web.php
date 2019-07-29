@@ -24,22 +24,32 @@ Route::get('/author', 'AdminController@author')->name('author');
 Route::get('/publication', 'AdminController@publication')->name('admin.publication');
 Route::get('/products', 'AdminController@product')->name('product');
 
+
+Route::get('todays/orders/', 'OrderController@index')->name('todays.orders');
+Route::post('update/orders/{id}', 'OrderController@update')->name('admin.order.update');
+Route::get('manage/order/{id}', 'OrderController@manageOrder')->name('manage.order');
+Route::get('delete/order/item/{id}', 'OrderController@deleteOrderItem')->name('delete.order.item');
+
 /*
     ===========================================================
-            Public routes
+            Public routes for cart
     ===========================================================
 */
 
+Route::prefix('carts')->group(function() {
+  Route::get('/', 'ProductCartController@index')->name('cart.index');
+  Route::get('/{id}', 'ProductCartController@create')->name('cart.create');
+  Route::get('/remove/{id}', 'ProductCartController@removeCartItem')->name('carts.remove.item');
+  Route::get('/delete/all', 'ProductCartController@destroyAllCart')->name('carts.destroy.all');
+  Route::post('/update', 'ProductCartController@updateCart')->name('carts.update');
+});
 
-Route::get('/add-to-cart', 'ProductController@getCart')->name('product.shoppingCart');
-Route::get('/remove-all-cart', 'ProductController@removeAllCart')->name('product.removeAllCart');
-Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('product.addToCart');
-Route::post('/remove-from-cart', 'ProductController@removeFromCart')->name('product.removeFromCart');
-Route::post('/update-cart', 'ProductController@updateCart')->name('product.updateCart');
-Route::get('/product-shipping', 'ProductController@productShipping')->name('home.shipping.product');
-Route::post('/product-shipping', 'ProductController@cartShipping')->name('home.shipping.cart');
-Route::get('/product-checkout', 'ProductController@productCheckout')->name('home.checkout.product');
-Route::post('/order-submit', 'ProductController@orderSubmit')->name('order.submit');
+Route::get('/product-shipping', 'ProductShippingController@productShipping')->name('home.shipping.product');
+Route::post('/product-shipping', 'ProductShippingController@cartShipping')->name('home.shipping.cart');
+Route::get('/product-checkout', 'ProductShippingController@productCheckout')->name('home.checkout.product');
+
+Route::post('/order-submit', 'ProductShippingController@orderSubmit')->name('order.submit');
+Route::get('/invoice/{id}', 'ProductShippingController@saveInvoices')->name('invoice');
 
 
 Route::get('/', 'PagesController@index')->name('home'); //   public home page
@@ -57,7 +67,6 @@ Route::prefix('home')->group(function() {
   Route::get('/bestseller', 'PagesController@bestseller')->name('bestseller');
   Route::get('/contact', 'PagesController@contact')->name('contact');
   Route::get('/about-us', 'PagesController@about_us')->name('about-us');
-  //Route::get('{path}', "HomeController@index")->where('path', '/^[a-z0-9]([0-9a-z_-\s])+$/i');
 });
 
 

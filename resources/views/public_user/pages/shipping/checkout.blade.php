@@ -33,14 +33,11 @@
       $totalQty += $product->qty;
       $totalItem++;
       $cartTotal += ($product->qty * $product->price);
-      $tax = intval(((4*$cartTotal)/100));
+      $tax = intval(((2*$cartTotal)/100));
       $grandTotal = $cartTotal - $discount + $tax + $delivery_charge;
     @endphp
   @endforeach
-  {{-- @php
-    echo "Total Cart Item: " . $totalItem . "<br>";
-    echo "Total Cart Quantity: " . $totalQty;
-  @endphp --}}
+
   <div class="bg m-0">
 
     <div class="col-md-10 mx-auto my-2 px-0">
@@ -82,6 +79,12 @@
 
             <!-- Cash on delivery section -->
             <div id="sec-cash" class="my-2" >
+              <form action="{{ route('order.submit') }}" method="post">
+                @csrf
+                <input type="hidden" name="type" value="0">
+                <input type="hidden" name="amount" value="@php echo $grandTotal; @endphp ">
+                <input type="hidden" name="transaction_id" value="">
+
                 <div class="">
                   <h4 class="bg-primary py-3 text-light text-center" style="border-radius: 5px">Cash on delivery</h4>
                 </div>
@@ -92,7 +95,7 @@
                   your house then you should pay an additional shipping cost. Shipping cost is fixed depend on your zone.
                 </p>
                 <div class="custom-control custom-checkbox mb-2">
-                  <input type="checkbox" class="custom-control-input" id="aggrement">
+                  <input type="checkbox" required class="custom-control-input" id="aggrement">
                   <label class="custom-control-label font-weight-normal pt-1" style="font-size: 14px; cursor: pointer;" for="aggrement"> Agree with the condition? </label>
                 </div>
                 {{-- <p>
@@ -102,9 +105,8 @@
                 <p class="mt-3">
                   <a class="btn btn-sm btn-outline-warning px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
                   <a class="btn btn-sm btn-outline-info px-4" style="border-radius: 50px;" href="{{ route('home.shipping.product') }}">Preview order</a>
-                  <form action="{{ route('order.submit') }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-sm btn-outline-success px-4 float-right" style="border-radius: 50px;">Submit Order</button>
+
+                    <button type="submit" onclick="return confirm('Are you sure to submit order?')" class="btn btn-sm btn-outline-success px-4 float-right" style="border-radius: 50px;">Submit Order</button>
                   </form>
                 </p>
             </div>
@@ -165,9 +167,13 @@
                     <td class="text-primary h5">Step 8</td>
                     <td class="text-danger h6">
                       Enter your transaction Id to complete your transaction received from bKash
+                      <form action="{{ route('order.submit') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="type" value="1">
+                        <input type="hidden" name="amount" value="@php echo $grandTotal; @endphp ">
 
-                      <p class="mt-2">TrxID: <input class="px-2" style="height: 35px; border: 1px solid #0069D9; border-radius: 5px;" type="text" name="" placeholder="Your transaction id"></p>
-                      <form class="" action="index.html" method="post">
+                        <p class="mt-2">TrxID:
+                          <input class="px-2" required name="transaction_id" style="height: 35px; border: 1px solid #0069D9; border-radius: 5px;" type="text" placeholder="Your transaction id"></p>
                         <input type="submit" class="btn btn-success btn-sm px-4" name="" value="Submit">
                       </form>
                     </td>

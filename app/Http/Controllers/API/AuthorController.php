@@ -32,27 +32,23 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-      // dd($request->all());
-      $this->validate($request, [
-        'name'   => 'required|string|max:255|min:2',
-      ]);
-      $imgName = 'abc';
-      if ($request->image ) {
-        // return 'true';
-        $imgName = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-        \Image::make($request->image)->save(public_path('img/writer/').$imgName);
-
-      }
+        $this->validate($request, [
+          'name'   => 'required|string|max:255|min:2',
+        ]);
+        $imgName = 'abc';
+        if ($request->image ) {
+          $imgName = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+          \Image::make($request->image)->save(public_path('img/writer/').$imgName);
+        }
 
 
-      // insert data
-      return Author::create([
-        'name'        => $request['name'],
-        'image'       => $imgName,
-        'description' => $request['description'],
-        'more_about'  => $request['more_about']
-      ]);
-
+        // insert data
+        return Author::create([
+          'name'        => $request['name'],
+          'image'       => $imgName,
+          'description' => $request['description'],
+          'more_about'  => $request['more_about']
+        ]);
     }
 
     /**
@@ -99,9 +95,6 @@ class AuthorController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
@@ -110,9 +103,8 @@ class AuthorController extends Controller
       if(file_exists('img/writer/'.$currentImage)) {
         unlink('img/writer/'.$currentImage);
       }
-        $author = Author::findOrFail($id);
-        $author->delete();
-      // redirect back
+      $author = Author::findOrFail($id);
+      $author->delete();
       return ['message' => 'Author deleted successfully'];
     }
 }

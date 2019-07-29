@@ -121,7 +121,7 @@
                               <div class="text m-0 p-0">
                                 <a class="btn btn-primary" href="{{ route('single.help', $book->id) }}">View Details</a>
                                 <br><br>
-                                <a class="btn btn-success" href="{{ route('product.addToCart', $book->id) }}">Add to Cart</a>
+                                <a class="btn btn-success" href="{{ route('cart.create', $book->id) }}">Add to Cart</a>
                               </div>
                             </div>
 

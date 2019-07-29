@@ -13,4 +13,11 @@ class OrderDetail extends Model
       'price',
       'offer',
     ];
+
+    public function order() {
+      return $this->belongsTo('App\Order');
+    }
+    public function product() {
+      return $this->hasOne('App\Product');
+    }
 }

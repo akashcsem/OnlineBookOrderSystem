@@ -21,8 +21,11 @@ class CreateOrdersTable extends Migration
             $table->string('mobile')->nullable();
             $table->integer('total_price');
             $table->integer('shipping_cost');
+            $table->integer('tax')->nullable();
             $table->string('contact_person');
             $table->string('contact_mobile');
+            $table->text('address');
+            $table->integer('zone')->nullable();
             $table->integer('status')->default(0);
             $table->string('feedback')->nullable();
             $table->timestamps();

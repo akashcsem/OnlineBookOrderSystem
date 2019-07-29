@@ -12,10 +12,17 @@ class Order extends Model
       'name',
       'mobile',
       'total_price',
+      'tax',
       'shipping_cost',
       'contact_person',
       'contact_mobile',
+      'zone',
+      'address',
       'status',
       'feedback',
     ];
+
+    public function orderedProduct() {
+      return $this->belongsTo('App\OrderDetail');
+    }
 }

@@ -3543,6 +3543,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -65527,11 +65533,21 @@ var staticRenderFns = [
           ),
           _vm._v(" "),
           _c("div", { staticClass: "text-success text-center mt-3" }, [
-            _c("h4", [_vm._v("Cars")])
+            _c("h4", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-success",
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { href: "todays/orders/" }
+                },
+                [_vm._v("Todays Orders")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-success text-center mt-2" }, [
-            _c("h1", [_vm._v("234")])
+            _c("h2", [_vm._v("5")])
           ])
         ])
       ]),
@@ -65550,11 +65566,21 @@ var staticRenderFns = [
           ),
           _vm._v(" "),
           _c("div", { staticClass: "text-info text-center mt-3" }, [
-            _c("h4", [_vm._v("Cars")])
+            _c("h4", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-info",
+                  staticStyle: { "text-decoration": "none" },
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Pending Orders")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-info text-center mt-2" }, [
-            _c("h1", [_vm._v("234")])
+            _c("h2", [_vm._v("3")])
           ])
         ])
       ]),
@@ -80519,24 +80545,10 @@ Vue.filter('myDate', function (text) {
   return moment__WEBPACK_IMPORTED_MODULE_9___default()(text).format("MMM / DD / YYYY");
 }); // window.Fire = new Vue();
 
-Vue.component('example-component', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]); // var mypage = new Vue({
-//   el: '#page',
-//   data: {
-//     carts: '20'
-//   }
-// })
-// const user = new Vue({
-
+Vue.component('example-component', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]);
 var user = new Vue({
   el: '#vue-user',
-  data: {
-    cart: 5,
-    xyz: true
-  },
-  methods: {// addToCart() {
-    //   this.cart += 1
-    // }
-  },
+  data: {},
   components: {
     'user-component': _components_Admin_Users_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'profile-component': _components_Admin_Profile_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -80545,8 +80557,7 @@ var user = new Vue({
     'category-component': _components_Admin_Category_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     'author-component': _components_Admin_Author_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     'publication-component': _components_Admin_Publication_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    'product-component': _components_Admin_Product_vue__WEBPACK_IMPORTED_MODULE_8__["default"] // public user
-
+    'product-component': _components_Admin_Product_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }
 });
 

@@ -41,7 +41,7 @@
               <br>
               <p>
                 <a class="btn btn-primary btn-sm" href="/">Back</a>
-                <a class="btn btn-success btn-sm" href="{{ route('product.addToCart', $product->id) }}">Add to Cart</a>
+                <a class="btn btn-success btn-sm" href="{{ route('cart.create', $product->id) }}">Add to Cart</a>
 
               </p>
           </div>

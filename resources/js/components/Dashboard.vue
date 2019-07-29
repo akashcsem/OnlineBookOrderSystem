@@ -5,8 +5,12 @@
               <div class="card border-success shadow text-success p-3 my-card" >
                 <span class="fa fa-book"  aria-hidden="true"></span>
               </div>
-              <div class="text-success text-center mt-3"><h4>Cars</h4></div>
-              <div class="text-success text-center mt-2"><h1>234</h1></div>
+              <div class="text-success text-center mt-3">
+                <h4><a style="text-decoration: none" class="text-success" href="todays/orders/">Todays Orders</a></h4>
+              </div>
+              <div class="text-success text-center mt-2">
+                <h2>5</h2>
+              </div>
           </div>
       </div>
       <div class="col-md-3">
@@ -14,8 +18,10 @@
               <div class="card border-info shadow text-info p-3 my-card" >
                 <span class="fa fa-user" aria-hidden="true"></span>
               </div>
-              <div class="text-info text-center mt-3"><h4>Cars</h4></div>
-              <div class="text-info text-center mt-2"><h1>234</h1></div>
+              <div class="text-info text-center mt-3">
+                <h4><a style="text-decoration: none" class="text-info" href="#">Pending Orders</a></h4>
+              </div>
+              <div class="text-info text-center mt-2"><h2>3</h2></div>
           </div>
       </div>
       <div class="col-md-3">

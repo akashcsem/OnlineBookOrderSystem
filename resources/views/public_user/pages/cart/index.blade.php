@@ -15,7 +15,7 @@
 @section('main-content')
   <div class="bg m-0">
 
-  
+
 
     <div class="w-100 py-4" style="background: #EAF8FC">
       <div class="col-md-10 mx-auto">
@@ -34,8 +34,8 @@
           <td>Qty</td>
           <td>Price</td>
           <td class="text-right">Subtotal</td>
-          {{-- <td>Discount</td> --}}
-          <td class="text-center"><a href="{{ route('product.removeAllCart') }}" class="btn btn-outline-danger btn-sm px-3" style="border-radius: 50px">Clear Cart</a> </td>
+
+          <td class="text-center"><a onclick="return confirm('Are you sure to clear all cart?')" href="{{ route('carts.destroy.all') }}" class="btn btn-outline-danger btn-sm px-3" style="border-radius: 50px">Clear Cart</a> </td>
         </tr>
           @php
             $total = 0;
@@ -48,7 +48,7 @@
                 <img src="{{ asset('product/'.$product->image) }}" style="height: 100px; width: 90px;" alt="Cart product" class="image">
               </td>
               <td>
-                {!! Form::open(['url' => '/update-cart','method' => 'POST']) !!}
+                {!! Form::open(['url' => route('carts.update'),'method' => 'POST']) !!}
                 <input type="hidden" name="rowId" value="{{ $product->rowId }}">
                 <input type="number" class="text-center" style="width: 50px; margin-top: 5px;" name="qty" value="{{ $product->qty }}">
                 <button type="submit" onclick="return confirm('Are you sure to update quantity?')" class="btn btn-primary btn-sm" name="button">Update</button>
@@ -59,12 +59,8 @@
               @php
                 $total += ($product->qty * $product->price);
               @endphp
-              {{-- <td>20 Tk</td> --}}
               <td class="text-center">
-                {!! Form::open(['url' => '/remove-from-cart','method' => 'POST']) !!}
-                <input type="hidden" name="rowId" value="{{ $product->rowId }}">
-                <button type="submit" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" name="button">Delete</button>
-                {!! Form::close() !!}
+                <a onclick="return confirm('Are you sure to delete?')" href="{{ route('carts.remove.item', $product->rowId) }}" class="btn btn-danger btn-sm">Delete</a>
               </td>
             </tr>
 

@@ -30,7 +30,7 @@
         </button> --}}
         @endif
 
-        <a href="{{ route('product.shoppingCart') }}" class="btn btn-outline-secondary navbar-toggler">
+        <a href="{{ route('cart.index') }}" class="btn btn-outline-secondary navbar-toggler">
           <i class="fa fa-shopping-cart"></i>
         </a>
       </div>
@@ -178,7 +178,7 @@
 
 
           <div id="basket-overview" class="navbar-collapse collapse d-none ml-2 d-lg-block">
-      		    <a href="{{ route('product.shoppingCart')}}" title="Checkout Book" data-toggle="tooltip" class="btn btn-primary navbar-btn">
+      		    <a href="{{ route('cart.index')}}" title="Checkout Book" data-toggle="tooltip" class="btn btn-primary navbar-btn">
       					  <i class="fa fa-shopping-cart"></i>
       					  <span>
                     @php

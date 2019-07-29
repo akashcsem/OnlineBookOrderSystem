@@ -57,25 +57,13 @@ Vue.filter('myDate', function(text) {
 
 Vue.component('example-component', require('./components/Dashboard.vue').default);
 
-// var mypage = new Vue({
-//   el: '#page',
-//   data: {
-//     carts: '20'
-//   }
-// })
 
-// const user = new Vue({
 const user = new Vue({
     el: '#vue-user',
     data: {
-      cart: 5,
-      xyz: true
+      
     },
-    methods: {
-      // addToCart() {
-      //   this.cart += 1
-      // }
-    },
+
     components: {
       'user-component': UserComponent,
       'profile-component': ProfileComponent,
@@ -86,6 +74,5 @@ const user = new Vue({
       'publication-component': PublicationComponent,
       'product-component': ProductComponent,
 
-      // public user
     }
 });

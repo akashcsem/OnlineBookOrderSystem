@@ -46,7 +46,7 @@
       $totalQty += $product->qty;
       $totalItem++;
       $cartTotal += ($product->qty * $product->price);
-      $tax = intval(((4*$cartTotal)/100));
+      $tax = intval(((2*$cartTotal)/100));
       $grandTotal = $cartTotal - $discount + $tax;
     @endphp
   @endforeach
@@ -83,7 +83,7 @@
       <!-- SHIPPING TITLE TITLE -->
 
       {{-- form start --}}
-      {!! Form::open([route('home.shipping.cart'), 'method'=>'post', 'role'=>'form', 'enctype'=>'multipart/form-data', 'name'=>'productEditForm']) !!}
+      {!! Form::open([ 'url' => route('home.shipping.cart'), 'method'=>'post', 'role'=>'form', 'enctype'=>'multipart/form-data', 'name'=>'productEditForm']) !!}
 
       <div class="mx-0">
           <!-- Shopping heading -->
@@ -196,6 +196,7 @@
           <!-- Shipping info + Zon wise shipping cost -->
           <div class="row py-3 ml-0">
 
+
             <!-- Shipping info form -->
             <div class="col-md-8">
                 <div class="text-center text-dark mb-3" style="background:#4FBFA8;">
@@ -205,56 +206,77 @@
                 </div>
 
                 <!-- Your name -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Your Name</label>
-                    <span class="text-danger" id="customer_name_error"></span>
                   </div>
-                  <input name="customer_name" type="text" class="form-control" value="@php echo $customer_name @endphp" placeholder="Your Name" autofocus>
+                  <input name="customer_name" type="text" class="form-control
+                  @if($errors->has('customer_name'))is-invalid @endif
+                  " value="@php echo $customer_name @endphp" placeholder="Your Name" autofocus>
+                </div>
+                <div class="text-danger ml-auto text-center">
+                  <small>{{ $errors->first('customer_name') }}</small>
                 </div>
 
                 <!-- Mobile Number -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Your Mobile No.</label>
                     <span class="text-danger" id="customer_mobile_error"></span>
                   </div>
-                  <input name="customer_mobile" type="number" class="form-control" value="@php echo $customer_mobile @endphp" placeholder="Mobile number" autofocus>
+                  <input name="customer_mobile" type="number" class="form-control
+                  @if($errors->has('customer_mobile'))is-invalid @endif
+                  " value="@php echo $customer_mobile @endphp" placeholder="Mobile number" autofocus>
+                </div>
+                <div class="text-danger ml-auto text-center">
+                  <small>{{ $errors->first('customer_mobile') }}</small>
                 </div>
 
                 <!-- Email -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Email Address</label>
-                    <span class="text-danger" id="full_name_eidt_error"></span>
                   </div>
-                  <input name="email" type="email" class="form-control" value="@php echo $email @endphp" placeholder="example@gmail.com" autofocus="false">
-                </div>
+                  <input name="email" type="email" class="form-control
+                @if($errors->has('email'))is-invalid @endif
+                " value="@php echo $email @endphp" placeholder="Email Address" autofocus>
+              </div>
+              <div class="text-danger ml-auto text-center">
+                <small>{{ $errors->first('email') }}</small>
+              </div>
+
+
 
 
                 <!-- Contact Person -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Contact Person</label>
-                      <span class="text-danger" id="full_name_eidt_error"></span>
                   </div>
-                  <input name="contact_person" class="form-control" placeholder="Contact Person" id="full_name_eidt" value="@php echo $contact_person @endphp" name="product_model" autofocus tabindex="1">
+                  <input name="contact_person" class="form-control @if($errors->has('contact_person'))is-invalid @endif
+                  " value="@php echo $contact_person @endphp" placeholder="Contact Person/Reciever" autofocus>
+                </div>
+                <div class="text-danger ml-auto text-center">
+                  <small>{{ $errors->first('contact_person') }}</small>
                 </div>
 
                 <!-- Contact Number -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Mobile Number</label>
-                    <span class="text-danger" id="reciver_number_error"></span>
                   </div>
-                  <input type="number" class="form-control" placeholder="01xxxxxxxxx" value="@php echo $reciver_number @endphp" id="reciver_number" name="reciver_number" autofocus>
+                  <input name="reciver_number" class="form-control @if($errors->has('reciver_number'))is-invalid @endif
+                  " value="@php echo $reciver_number @endphp" placeholder="01xxxxxxxxx" autofocus>
+                </div>
+                <div class="text-danger ml-auto text-center">
+                  <small>{{ $errors->first('reciver_number') }}</small>
                 </div>
 
+
                 <!-- Zone -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Zone</label>
-                    <span class="text-danger"  id="reciver_number_error"></span>
                   </div>
 
                   <select class="form-cntrol" name="zone">
@@ -264,24 +286,19 @@
                       <option value="@php echo $i @endphp">@php echo $zoneOption[$i] @endphp</option>
                       @endif
                     @endfor
-                    {{-- <option value="1">Gazipur District</option>
-                    <option value="2">Other's District in dhaka division</option>
-                    <option value="3">Rangpur division</option>
-                    <option value="4">Rajshahi Division</option>
-                    <option value="5">Chittagang Division</option>
-                    <option value="6">Syllet Division</option>
-                    <option value="7">Maymunsing Division</option>
-                    <option value="8">Own Delivery</option> --}}
+
                   </select>
                 </div>
 
                 <!-- Address -->
-                <div class="input-group parent-top mb-2" >
+                <div class="input-group parent-top mt-2" >
                   <div class="bg-secondary input-group-prepend label_parent">
                     <label class="input-group-text">Address</label>
-                    <span class="text-danger" id="shipping_address_error"></span>
                   </div>
-                  <textarea name="address" placeholder="Shipping address" rows="3" cols="80">@php echo $address @endphp</textarea>
+                  <textarea name="address" class="@if($errors->has('address'))border-danger @endif" placeholder="Shipping address" rows="3" cols="80">@php echo $address @endphp</textarea>
+                </div>
+                <div class="text-danger ml-auto text-center">
+                  <small>{{ $errors->first('address') }}</small>
                 </div>
 
 

@@ -22,13 +22,12 @@ Route::get('profile', 'API\UserController@profile');
 Route::apiResources(['group'=>'API\GroupController']);
 Route::apiResources(['category'=>'API\CategoryController']);
 Route::apiResources(['author'=>'API\AuthorController']);
-// Route::apiResources(['publication'=>'API\PublicationController']);
 Route::apiResources(['product'=>'API\ProductController']);
 Route::get('/product/search/{search}', 'API\ProductController@search');
 Route::apiResources(['publication'=>'API\PublicationController']);
 
+
 // public user
-Route::apiResources(['cart'=>'API\CartController']);
 
 Route::get('currentUser','API\UserController@currentUser');
 Route::get('category-list','API\CategoryController@category_list');

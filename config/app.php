@@ -111,13 +111,16 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
+
+        // Download packages
         Intervention\Image\ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         TJGazel\Toastr\ToastrServiceProvider::class,
-        /*
-         * Package Service Providers...
-         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
 
         /*
          * Application Service Providers...
@@ -174,12 +177,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-
+        // class for download packages
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Toastr' => TJGazel\Toastr\Facades\Toastr::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],

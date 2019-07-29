@@ -45,7 +45,7 @@
           <!-- /.ribbon-->
           <div class="ribbon gift">
             <div class="theribbon px-0">
-              <a style="color: white; text-decoration: none; display: block" href="{{ route('product.addToCart', $book->id) }}">Add to Cart</a>
+              <a style="color: white; text-decoration: none; display: block" href="{{ route('cart.create', $book->id) }}">Add to Cart</a>
             </div>
             <div class="ribbon-background"></div>
           </div>
