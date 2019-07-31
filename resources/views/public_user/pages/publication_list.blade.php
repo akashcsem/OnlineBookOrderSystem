@@ -28,7 +28,7 @@
     <div class="col-md-10 mx-auto">
       <div class="row my-4">
         @foreach ($publications as $publication)
-          <div class="col-md-2">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
 
             <div class="card text-center">
               <div class="card-body publication">
@@ -38,7 +38,7 @@
               </div>
               <div class="card-footer px-0 pt-1 pb-0">
                 <p>By
-                  <a href="{{ route('publication', $publication->id) }}">
+                  <a style="color: black; font-weight: bold" href="{{ route('publication', $publication->id) }}">
                     {{ $publication->name }}
                   </a>
                 </p>

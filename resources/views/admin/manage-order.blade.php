@@ -197,13 +197,15 @@
                         <tr>
                           <td>@php echo $rowCount++; @endphp</td>
                           <td>
-                            <a target="_blank" href="{{ route('single.help', $orderedProduct->product_id) }}">{{ $products[$orderedProduct->product_id]->name }}</a>
+                            <a style="text-decoration: none; color: black;" target="_blank" href="{{ route('single.help', $orderedProduct->product_id) }}">{{ $products[$orderedProduct->product_id]->name }}</a>
                           </td>
                           <td> {{ $orderedProduct->quantity }} Pc</td>
                           <td> {{ $orderedProduct->price }} Tk.</td>
                           <td> {{ $orderedProduct->quantity * $orderedProduct->price }} Tk.</td>
                           <td>
-                            <a class="btn btn-danger btn-sm" href="{{ route('delete.order.item', $orderedProduct->id) }}" onclick="return confirm('Are you sure to cancel this item?')">Cancel</a>
+                            <a class="text-center" href="{{ route('delete.order.item', $orderedProduct->id) }}" onclick="return confirm('Are you sure to cancel this item?')">
+                              <i class="fas fa-trash red" style="font-size: 20px;"></i>
+                            </a>
                           </td>
 
 

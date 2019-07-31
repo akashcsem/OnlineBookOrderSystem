@@ -54,16 +54,14 @@
                         <a class="writer-item" href="{{ route('writer', $author->id) }}">{{$author->name}}</a>
                       </span>
                   @endif
-                  @php
-                  if ($itemCount>11) {
-                    echo
-                    '<span class="px-2 mr-3 my-1 more">
-                      <a class="writer-item" href="/all-writer/">More Writer</a>
-                    </span>';
-                    break;
-                  }
-                    $itemCount++;
-                  @endphp
+
+                  @if ($itemCount>11) {
+                    <span class="px-2 mr-3 my-1 more">
+                      <a class="writer-item" href="{{ route('writer.list') }}">More Writer</a>
+                    </span>
+                    @php break; @endphp
+                  @endif
+                    {{ $itemCount++ }}
                 @endforeach
               </div>
             </div>

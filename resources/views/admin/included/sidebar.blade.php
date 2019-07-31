@@ -5,39 +5,34 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
     </li>
-    {{-- <li class="nav-item d-none d-sm-inline-block">
-      <a href="index3.html" class="nav-link">Home</a>
+
+    <li class="nav-item">
+      <!-- Brand Logo -->
+      <a href="#" class="nav-link">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="brand-image img-circle">
+        <span class="brand-text font-weight-bold">Soptoborno</span>
+      </a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li> --}}
   </ul>
 
-  <!-- SEARCH FORM -->
-  {{-- <form class="form-inline ml-3">
-    <div class="input-group input-group-sm">
-      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-      <div class="input-group-append">
-        <button class="btn btn-navbar" type="submit">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </form> --}}
-
-  <!-- Right navbar links -->
 
 </nav>
 <!-- /.navbar -->
 
+
+
+
+
+
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  {{-- <a href="index3.html" class="brand-link">
     <img src="{!! asset('img/company-logo.png') !!}" alt="Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
     <span class="brand-text font-weight-light">Soptoborno</span>
-  </a>
+  </a> --}}
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -50,6 +45,10 @@
         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
       </div>
     </div>
+
+
+
+
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -89,6 +88,16 @@
 
           </ul>
         </li>
+
+
+        <li class="nav-item">
+          <a href="{!! route('todays.orders') !!}" class="nav-link">
+            <i class="nav-icon fab fa-first-order green"> </i>
+            <p>
+              Order
+            </p>
+          </a>
+         </li>
         <li class="nav-item">
           <a href="{!! route('group') !!}" class="nav-link">
             <i class="nav-icon fas fa-object-group teal"></i>

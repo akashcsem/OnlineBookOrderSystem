@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use Carbon\Carbon;
+use DB;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Check user is authenticated or not
      */
     public function __construct()
     {
@@ -18,11 +19,13 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-		    return view('admin.dashboard');
+      return view('admin.dashboard',
+      [
+        'todaysTotalOrder'  => Order::where('created_at', '>=', Carbon::today())->get(),
+        'totalPendingOrder' => DB::table('orders')->where('status', 0)
+      ]);
     }
 }

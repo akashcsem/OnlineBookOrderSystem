@@ -35,7 +35,7 @@
 
 
     <!-- JavaScript files-->
-  	@include('public_user.inc.scripts')
+    <script src="/js/app.js"></script>
 		@yield('additional_script')
   </body>
 </html>

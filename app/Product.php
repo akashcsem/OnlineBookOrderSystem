@@ -12,6 +12,8 @@ class Product extends Model
       'category_id',
       'price',
       'qty',
+      'sold',
+      'islamic',
       'offer',
       'isbn_no',
       'admin_id',

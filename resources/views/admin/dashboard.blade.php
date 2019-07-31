@@ -24,7 +24,7 @@
                     <span class="fa fa-book"  aria-hidden="true"></span>
                   </div>
                   <div class="text-success text-center mt-3">
-                    <h4><a style="text-decoration: none" class="text-success" href="todays/orders/">Todays Orders</a></h4>
+                    <h4><a style="text-decoration: none" class="text-success" href="{{ route('todays.orders') }}">Todays Orders</a></h4>
                   </div>
                   <div class="text-success text-center mt-2">
                     <h2>{{ $todaysTotalOrder->count() }}</h2>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\Author; 
+use App\Author;
 use App\Publication;
 use Cart;
 
@@ -41,7 +41,9 @@ class ProductCartController extends Controller
 
     // Remove or delete single item from cart
     public function removeCartItem($rowId) {
-        Cart::remove($rowId);
+        if ($rowId) {
+          Cart::remove($rowId);
+        }
         return redirect()->back();
     }
 

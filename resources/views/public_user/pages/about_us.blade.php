@@ -74,7 +74,7 @@
     <div class="row mt-5">
       <div class="col-md-10 mx-auto">
         <div class="row">
-          <div class="col-8 col-sm-6 col-md-3 mx-auto mb-2">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
             <div class="card">
               <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Suchi.jpg') }}" alt="" style="height: 250px; width: 90%">
               <div class="card-body pt-1 text-center">
@@ -83,7 +83,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 
                 <!-- Add font awesome icons -->
-                <a href="#" class="social fa fa-facebook fa-facebooks"></a>
+                <a target="_blank" href="https://www.facebook.com/iffat.jahan.564" class="social fa fa-facebook fa-facebooks"></a>
                 <a href="#" class="social fa fa-twitter"></a>
                 <a href="#" class="social fa fa-google"></a>
                 <a href="#" class="social fa fa-envelope"></a>
@@ -92,7 +92,7 @@
           </div>
 
 
-          <div class="col-8 col-sm-6 col-md-3 mx-auto mb-2">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
             <div class="card">
               <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Akash.jpg') }}" alt="" style="height: 250px; width: 90%">
               <div class="card-body pt-1 text-center">
@@ -101,7 +101,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
                 <!-- Add font awesome icons -->
-                <a href="#" class="social fa fa-facebook fa-facebooks"></a>
+                <a target="_blank" href="https://www.facebook.com/faster.resam" class="social fa fa-facebook fa-facebooks"></a>
                 <a href="#" class="social fa fa-twitter"></a>
                 <a href="#" class="social fa fa-google"></a>
                 <a href="#" class="social fa fa-envelope"></a>
@@ -110,7 +110,7 @@
           </div>
 
 
-          <div class="col-8 col-sm-6 col-md-3 mx-auto mb-2">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
             <div class="card">
               <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Shathi.jpg') }}" alt="" style="height: 250px; width: 90%">
               <div class="card-body pt-1 text-center">
@@ -119,7 +119,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
                 <!-- Add font awesome icons -->
-                <a href="#" class="social fa fa-facebook fa-facebooks"></a>
+                <a target="_blank" href="https://www.facebook.com/mhasfia.shathi" class="social fa fa-facebook fa-facebooks"></a>
                 <a href="#" class="social fa fa-twitter"></a>
                 <a href="#" class="social fa fa-google"></a>
                 <a href="#" class="social fa fa-envelope"></a>
@@ -128,7 +128,7 @@
           </div>
 
 
-          <div class="col-8 col-sm-6 col-md-3 mx-auto mb-2">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
             <div class="card">
               <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Imran.jpg') }}" alt="" style="height: 250px; width: 90%">
               <div class="card-body pt-1 text-center">
@@ -137,7 +137,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
                 <!-- Add font awesome icons -->
-                <a href="#" class="social fa fa-facebook fa-facebooks"></a>
+                <a target="_blank" href="www.facebook.com/pavel.136" class="social fa fa-facebook fa-facebooks"></a>
                 <a href="#" class="social fa fa-twitter"></a>
                 <a href="#" class="social fa fa-google"></a>
                 <a href="#" class="social fa fa-envelope"></a>

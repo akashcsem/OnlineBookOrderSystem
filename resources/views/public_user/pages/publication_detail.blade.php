@@ -82,7 +82,7 @@
               </div>
               <div class="card-footer px-0 pt-1 pb-0">
                 <p>By
-                  <a href="{{ route('publication', $curentPublication->id) }}">
+                  <a style="text-decoration: none; color: black !important; font-weight: bold" href="{{ route('publication', $curentPublication->id) }}">
                     {{ $curentPublication->name }}
                   </a>
                 </p>
@@ -102,13 +102,13 @@
               <h3>More Related Books of {{ $curentPublication->name }} Publication's </h3>
             </div>
             <!-- carousel inner -->
-            <div class="row clearfix px-3">
+            <div class="row my-5 clearfix px-3">
 
 
                     @foreach ($products as $book)
                       @if ($curentPublication->id == $book->publication_id)
 
-                      <div class="col-md-2 text-center my-4">
+                      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center mb-4">
                         <div class="con">
                           <div class="custom-container mx-3">
 

@@ -1,10 +1,6 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-
     ===========================================================
             Admin Routes
     ===========================================================
@@ -14,7 +10,7 @@
 Auth::routes();
 
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
-Route::get('/home', 'AdminController@dashboard')->name('home');
+// Route::get('/home', 'AdminController@dashboard')->name('home');
 Route::get('/user', 'AdminController@user')->name('user');
 Route::get('/profile', 'AdminController@profile')->name('profile');
 
@@ -46,20 +42,21 @@ Route::prefix('carts')->group(function() {
 
 Route::get('/product-shipping', 'ProductShippingController@productShipping')->name('home.shipping.product');
 Route::post('/product-shipping', 'ProductShippingController@cartShipping')->name('home.shipping.cart');
-Route::get('/product-checkout', 'ProductShippingController@productCheckout')->name('home.checkout.product');
+Route::get('/payment-checkout', 'ProductShippingController@productCheckout')->name('payment.checkout');
 
 Route::post('/order-submit', 'ProductShippingController@orderSubmit')->name('order.submit');
-Route::get('/invoice/{id}', 'ProductShippingController@saveInvoices')->name('invoice');
+Route::get('/order/invoice/{id}', 'ProductShippingController@orderInvoice')->name('order.invoice');
 
 
-Route::get('/', 'PagesController@index')->name('home'); //   public home page
+Route::get('/', 'PagesController@index'); //   public home page
 // Route::post('/{search?}', 'PagesController@index')->name('home'); //   public home page
 Route::prefix('home')->group(function() {
+  Route::get('/', 'PagesController@index')->name('home'); //   public home page
   Route::get('/by-category/{id}', 'PagesController@productByCategory')->name('productByCategory'); //   public home page
   Route::get('/by-group/{id}', 'PagesController@productByGroup')->name('productByGroup'); //   public home page
-  Route::get('/view-product/{id}', 'PagesController@singleProduct')->name('single.help');
+  Route::get('/view-product/{id}', 'PagesController@show')->name('single.help');
   Route::get('/writer/{id}', 'PagesController@writer')->name('writer');
-  Route::get('/all-writer', 'PagesController@all_writer');
+  Route::get('/all-writer', 'PagesController@all_writer')->name('writer.list');
   Route::get('/all-publication', 'PagesController@all_publication');
   Route::get('/publication/{id}', 'PagesController@publication')->name('publication');
   Route::get('/novel', 'PagesController@novel')->name('novel');

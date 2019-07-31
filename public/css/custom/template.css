@@ -6,36 +6,12 @@ body {
   background-color: #f0f0f0;
 }
 
-button {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  outline: none;
-}
-
-a i.fa, button i.fa {
-  margin: 0 3px;
-}
-
-h1 {
-  font-weight: 700;
-}
-
+/* search icon color */
 .btn-primary {
   color: #fff !important;
 }
 
-.btn + .btn {
-  margin-left: 5px;
-}
-
-.disabled {
-  cursor: not-allowed;
-}
-
-.clickable {
-  cursor: pointer;
-}
-
+/* mega menu position */
 .menu-large {
   position: static !important;
 }
@@ -43,8 +19,8 @@ h1 {
 .menu-large .megamenu {
   padding: 0px;
   width: 100%;
-  max-width: 1140px;
-  left: 50%;
+  max-width: 850px;
+  left: 45%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   margin-top: -1px;
@@ -73,7 +49,7 @@ h1 {
   /* text-transform: uppercase; */
   text-transform: capitalize;
   letter-spacing: 1px;
-  font-weight: 600;
+  font-weight: 550;
   font-size: 15px;
   padding: 25px 5px !important;
   color: #555;
@@ -118,7 +94,7 @@ h1 {
 
 /* tested secondary menu header */
 .navbar .menu-large h5 {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -141,7 +117,7 @@ h1 {
   list-style-type: none;
   /* border-bottom: solid 1px #eee; */
   text-transform: capitalize;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   padding: 4px 0;
 }
 /* tested secondary menu */

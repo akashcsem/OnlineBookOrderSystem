@@ -15,6 +15,14 @@
 @section('main-content')
 
 
+  @if ($cartProducts->isEmpty())
+    <div class="w-100 py-5 text-center" style="background: #EAF8FC">
+      <div class="col-md-10 mx-auto py-5">
+        <h3>Sorry, You don't buy any product please buy something</h3>
+        <a class="btn btn-outline-primary btn-sm" href="/">Home</a>
+      </div>
+    </div>
+  @else
 
   @php
     $customer_name   = "";
@@ -79,6 +87,7 @@
 
 
   <div class="bg m-0">
+
     <div class="col-md-9 mx-auto my-3 px-0">
       <!-- SHIPPING TITLE TITLE -->
 
@@ -365,6 +374,12 @@
 
 
 
+
+
+
+
+
+          {{-- submit shipping info --}}
           <table class="table mt-5">
             <tfoot class="p-5">
               <tr>
@@ -377,6 +392,11 @@
                 </tr>
               </tfoot>
           </table>
+          {{-- END submit shipping info --}}
+
+
+
+
       </div>
       {!! Form::close() !!}
     {{-- </form> --}}
@@ -384,4 +404,5 @@
     </div>
   </div>
 
+  @endif
 @endsection

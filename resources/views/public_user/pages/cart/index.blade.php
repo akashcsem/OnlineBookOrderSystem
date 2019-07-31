@@ -17,13 +17,16 @@
 
 
 
-    <div class="w-100 py-4" style="background: #EAF8FC">
-      <div class="col-md-10 mx-auto">
-        <h3>Check in out</h3>
-      </div>
-    </div>
 
-    @if ($cartProducts != null)
+
+    @if (!$cartProducts->isEmpty())
+      <div class="w-100 py-4" style="background: #EAF8FC">
+        <div class="col-md-10 mx-auto">
+          <h3>Check in out</h3>
+        </div>
+      </div>
+
+
     <div class="col-md-9 mx-auto my-3 p-0">
       <table class="table table-striped">
 
@@ -88,9 +91,13 @@
       </table>
     </div>
     @else
-      <div class="">
-        No product cart
+      <div class="w-100 py-5 text-center" style="background: #EAF8FC">
+        <div class="col-md-10 mx-auto py-5">
+          <h3>Sorry, You don't buy any product please buy something</h3>
+          <a class="btn btn-outline-primary btn-sm" href="/">Home</a>
+        </div>
       </div>
+
     @endif
   </div>
 

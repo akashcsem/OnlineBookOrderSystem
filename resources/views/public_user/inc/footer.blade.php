@@ -2,19 +2,25 @@
   <div class="footer-top row">
     <div class="col-md-10 mx-auto">
       <div class="row">
-        <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
           <div class="footer-widget">
             <a href=""><img src="{{ asset('img/logo.png') }}" alt="img" style="width: 100px; height: 60px;"></a>
             <p class="mt-0">Soptoborno is a very easy and useful resources from where you can read, order and buy specific book.</p>
             <div class="socil-icon float-left justify-content-center">
-              <a href="#" class="social fa fa-facebook fa-facebooks"></a>
+              <a target="_blank" href="https://www.facebook.com/faster.resam" class="social fa fa-facebook fa-facebooks"></a>
               <a href="#" class="social fa fa-twitter"></a>
               <a href="#" class="social fa fa-google"></a>
               <a href="#" class="social fa fa-envelope"></a>
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
           <div class="footer-widget footer-menu">
             <h3>services</h3>
             <ul>
@@ -26,7 +32,9 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
           <div class="footer-widget footer-menu">
             <h3>Exployed By</h3>
             <ul>
@@ -36,7 +44,9 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
           <div class="footer-widget footer-menu">
             <h3>contacts</h3>
             <ul>

@@ -12,167 +12,167 @@ use DB;
 
 class PagesController extends Controller
 {
-  public function index(Request $request)
-  {
-    // Toastr::info('welcome admin!');
+  public function index(Request $request) {
+      if ($request->search == null) {
+        $search = "";
+      } else {
+        $search = $request->search;
+      }
 
-    if ($request->search == null) {
-      $search = "";
-    } else {
-      $search = $request->search;
-    }
+      $products = Product::where('name','like','%'.$search.'%')
+      ->orWhere('price','like','%'.$search.'%')
+      ->orWhereHas('author', function ($query) use ($search) {
+          $query->where('name', 'like', '%'.$search.'%');
+      })->paginate(20);
 
-    $activePage = "home";
-    $selectedCategory = 0;
-    $selectedGroup = 0;
-
-    $products = Product::where('name','like','%'.$search.'%')
-    ->orWhere('price','like','%'.$search.'%')
-    ->orWhereHas('author', function ($query) use ($search) {
-        $query->where('name', 'like', '%'.$search.'%');
-    })
-    ->paginate(20);
-
-    // $products = DB::table('products')
-    // ->where('name', 'like', '%'.$search.'%')
-    // ->orWhere('price', 'like', '%'.$search.'%')
-    // ->paginate(10);
-
-    $cartProducts = Cart::Content();
-    $categories = Category::orderBy('name', 'asc')->get();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.home', ['products'=>$products,
-    'cartProducts'=>$cartProducts, 'authors'=>$authors,
-    'publications'=>$publications, 'selectedCategory'=>$selectedCategory,
-    'selectedGroup'=>$selectedGroup, 'activePage'=>$activePage, 'categories'=>$categories]);
+      return view('public_user.pages.home',
+      [
+        'products'         => $products,
+        'cartProducts'     => Cart::Content(),
+        'authors'          => Author::orderBy('name', 'asc')->get(),
+        'publications'     => Publication::orderBy('NAME', 'asc')->get(),
+        'selectedCategory' => 0,
+        'selectedGroup'    => 0,
+        'activePage'       => "home",
+        'categories'       => Category::orderBy('name', 'asc')->get()
+      ]);
   }
 
-  public function productByCategory($id)
-  {
-    // return $id;
-    // Toastr::info('welcome admin!');
-    $activePage = "home";
-    $selectedGroup = 0;
-    $selectedCategory = $id;
+
+  //  get all product with selected category
+  public function productByCategory($id) {
     if ($id == 0) {
       $products = DB::table('products')->paginate(10);
     } else {
       $products = DB::table('products')->where('products.category_id', $id)->paginate(10);
     }
-    $cartProducts = Cart::Content();
-    $categories = Category::orderBy('name', 'asc')->get();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
+
     return view('public_user.pages.home',
-    ['products'=>$products, 'cartProducts'=>$cartProducts,
-    'selectedCategory'=>$selectedCategory, 'authors'=>$authors,
-    'publications'=>$publications, 'activePage'=>$activePage,
-    'categories'=>$categories,'selectedGroup'=>$selectedGroup]);
+    [
+      'products'         => $products,
+      'cartProducts'     => Cart::Content(),
+      'selectedCategory' => $id,
+      'authors'          => Author::orderBy('name', 'asc')->get(),
+      'publications'     => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'       => "home",
+      'categories'       => Category::orderBy('name', 'asc')->get(),
+      'selectedGroup'    => 0
+    ]);
   }
 
-  public function productByGroup($id)
-  {
-    // return $id;
-    // Toastr::info('welcome admin!');
-    $activePage = "home";
-    $selectedCategory = 0;
-    $selectedGroup = $id;
+
+  // get all product with selected group
+  public function productByGroup($id) {
     if ($id == 0) {
       $products = DB::table('products')->paginate(10);
     } else {
       $products = DB::table('products')->where('products.group_id', $id)->paginate(10);
     }
-    $cartProducts = Cart::Content();
-    $categories = Category::orderBy('name', 'asc')->get();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
+
     return view('public_user.pages.home',
-    ['products'=>$products, 'cartProducts'=>$cartProducts,
-    'selectedCategory'=>$selectedCategory, 'authors'=>$authors,
-    'publications'=>$publications, 'activePage'=>$activePage,
-    'categories'=>$categories,'selectedGroup'=>$selectedGroup]);
+    [
+      'products'        => $products,
+      'cartProducts'    => Cart::Content(),
+      'selectedCategory'=> 0,
+      'authors'         => Author::orderBy('name', 'asc')->get(),
+      'publications'    => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'      => "home",
+      'categories'      => Category::orderBy('name', 'asc')->get(),
+      'selectedGroup'   => $id
+    ]);
   }
 
-  public function singleProduct($id)
-  {
-    $activePage = "home";
-    $cartProducts = Cart::Content();
-    $categories = Category::orderBy('name', 'asc')->get();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    $product = DB::table('products')
-                   ->join('categories', 'categories.id', '=', 'category_id')
-                   ->join('authors', 'authors.id', '=', 'author_id')
-                   ->join('publications', 'publications.id', '=', 'publication_id')
-                   ->select('products.*', 'categories.name as catName', 'authors.name as authorName', 'publications.name as publisherName')
-                   ->where('products.id', $id)
-                   ->first();
-      $products = DB::table('products')->where('author_id', $product->author_id)->paginate(10);
-      return view('public_user.pages.singleProduct', ['product'=>$product, 'products'=>$products, 'cartProducts'=>$cartProducts, 'activePage'=>$activePage, 'publications'=>$publications, 'authors'=>$authors]);
+
+  // View book detail
+  public function show ($id) {
+
+    $product  = Product::where('id', $id)->first();
+    $products = Product::where('author_id', $product->author_id)->paginate(10);
+
+    return view('public_user.pages.show',
+      [
+        'product'      => $product,
+        'products'     => $products,
+        'cartProducts' => Cart::Content(),
+        'activePage'   => "home",
+        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get()
+      ]);
 
   }
 
-  public function writer(Request $request, $id)
-  {
-    if ($request->search == null) {
-      $search = "";
-    } else {
-      $search = $request->search;
-    }
 
-    $activePage = "writer";
+  // get all books of specific writer
+  public function writer(Request $request, $id) {
+      if ($request->search == null) {
+        $search = "";
+      } else {
+        $search = $request->search;
+      }
+
     $products = DB::table('products')->where('name', 'like', '%'.$search.'%')->paginate(10);
-
-    $cartProducts = Cart::Content();
-    $curentAuthor = DB::table('authors')->where('id', $id)->first();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.writer_list', ['cartProducts'=>$cartProducts, 'products'=>$products, 'authors'=>$authors, 'publications'=>$publications, 'curentAuthor'=>$curentAuthor, 'activePage'=>$activePage]);
+    return view('public_user.pages.writer_list',
+    [
+      'cartProducts' => Cart::Content(),
+      'products'     => $products,
+      'authors'      => Author::orderBy('NAME', 'asc')->get(),
+      'publications' => Publication::orderBy('NAME', 'asc')->get(),
+      'curentAuthor' => DB::table('authors')->where('id', $id)->first(),
+      'activePage'   => "writer"]);
   }
 
-  public function all_writer()
-  {
-    $activePage = "writer";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.all_writer', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
+
+  // get all writer list
+  public function all_writer() {
+    return view('public_user.pages.all_writer',
+    [
+      'cartProducts' => Cart::Content(),
+      'authors'      => Author::orderBy('NAME', 'asc')->get(),
+      'publications' => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'   => "writer"
+    ]);
   }
 
-  public function publication($id)
-  {
-    $activePage = "publication";
-    $categories = Category::orderBy('name', 'asc')->get();
-    $products = Product::orderBy('name', 'asc')->get();
-    $cartProducts = Cart::Content();
-    $curentPublication = DB::table('publications')->where('id', $id)->first();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.publication_detail', ['products'=>$products, 'cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'curentPublication'=>$curentPublication, 'activePage'=>$activePage, 'categories'=>$categories]);
+
+  // get all books of specic publication
+  public function publication($id) {
+
+    return view('public_user.pages.publication_detail',
+    [
+      'products'          => Product::orderBy('name', 'asc')->get(),
+      'cartProducts'      => Cart::Content(),
+      'authors'           => Author::orderBy('name', 'asc')->get(),
+      'publications'      => Publication::orderBy('NAME', 'asc')->get(),
+      'curentPublication' => DB::table('publications')->where('id', $id)->first(),
+      'activePage'        => "publication",
+      'categories'        => Category::orderBy('name', 'asc')->get()
+    ]);
   }
 
-  public function all_publication()
-  {
-    $activePage = "publication";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.publication_list', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
+
+  // get all publication list
+  public function all_publication() {
+      return view('public_user.pages.publication_list',
+      [
+        'cartProducts' => Cart::Content(),
+        'authors'      => Author::orderBy('NAME', 'asc')->get(),
+        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'activePage'   => "publication"
+      ]);
   }
 
-  public function novel(Request $request)
-  {
 
+  // get all novel
+  public function novel(Request $request) {
+    $category_id = 0;  // we assume that "novel" is a category which id is 0
+    $categories  = Category::orderBy('name', 'asc')->get();
 
-    $activePage = "novel";
-    $categories = Category::orderBy('name', 'asc')->get();
-    $category_id = 0;
     foreach ($categories as $category) {
       if(strtolower($category->name) == "novel") {
         $category_id = $category->id;
       }
     }
+
     if ($request->search == null) {
       $products = DB::table('products')->where('category_id', $category_id)->paginate(10);
     } else {
@@ -180,44 +180,65 @@ class PagesController extends Controller
       $products = DB::table('products')->where('name', 'like', '%'.$search.'%')->paginate(10);
     }
 
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('name', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.novel', ['products'=>$products, 'cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage, 'categories'=>$categories]);
+      return view('public_user.pages.novel',
+      [
+        'products'     => $products,
+        'cartProducts' => Cart::Content(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'activePage'   => "novel",
+        'categories'   => $categories
+      ]);
   }
 
-  public function contact()
-  {
-    $activePage = "contact";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.contact', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
-  }
-  public function about_us()
-  {
-    $activePage = "about_us";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.about_us', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
+
+  // populate contact page
+  public function contact() {
+    return view('public_user.pages.contact',
+    [
+      'cartProducts' => Cart::Content(),
+      'authors'      => Author::orderBy('NAME', 'asc')->get(),
+      'publications' => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'   => "contact"
+    ]);
   }
 
-  public function bestseller()
-  {
-    $activePage = "bestseller";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.bestseller', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
+
+  // populate about page
+  public function about_us() {
+      return view('public_user.pages.about_us',
+      [
+        'cartProducts' => Cart::Content(),
+        'authors'      => Author::orderBy('NAME', 'asc')->get(),
+        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'activePage'   => "about_us"
+      ]);
   }
 
-  public function islamic()
-  {
-    $activePage = "islamic";
-    $cartProducts = Cart::Content();
-    $authors = Author::orderBy('NAME', 'asc')->get();
-    $publications = Publication::orderBy('NAME', 'asc')->get();
-    return view('public_user.pages.islamic', ['cartProducts'=>$cartProducts, 'authors'=>$authors, 'publications'=>$publications, 'activePage'=>$activePage]);
+
+  // populate best sale product
+  public function bestseller() {
+    return view('public_user.pages.bestseller',
+    [
+      'cartProducts' => Cart::Content(),
+      'products'     => Product::take(12)->orderBy('sold', 'desc')->get(),
+      'authors'      => Author::orderBy('NAME', 'asc')->get(),
+      'publications' => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'   => "bestseller"
+    ]);
+
+  }
+
+
+  // populate islamic page with islamic books
+  public function islamic() {
+    return view('public_user.pages.islamic',
+    [
+      'cartProducts' => Cart::Content(),
+      'products'     => Product::where('islamic', 1)->paginate(15),
+      'authors'      => Author::orderBy('NAME', 'asc')->get(),
+      'publications' => Publication::orderBy('NAME', 'asc')->get(),
+      'activePage'   => "islamic"
+    ]);
   }
 }

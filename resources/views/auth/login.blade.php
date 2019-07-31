@@ -38,11 +38,11 @@
 			<input class="mb-1" type="submit" name="btnLogin" value="Login">
 			@if ($errors->has('email'))
 					@if (($errors->first('email')) == "These credentials do not match our records.")
-						<div style="font-size: 18px">
+						<div style="font-size: 16px" class="text-center mt-1">
 							@if (Route::has('password.request'))
-								Lost Your
+								Lost your
 							<a style="color: #1DC9B7" href="{{ route('password.request') }}">
-								{{ __('Password?') }}
+								{{ __('password?') }}
 							</a>
 							@endif
 						</div>

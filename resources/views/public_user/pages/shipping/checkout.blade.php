@@ -14,6 +14,16 @@
 
 
 @section('main-content')
+
+  @if ($cartProducts->isEmpty())
+    <div class="w-100 py-5 text-center" style="background: #EAF8FC">
+      <div class="col-md-10 mx-auto py-5">
+        <h3>Sorry, You don't buy any product please buy something</h3>
+        <a class="btn btn-outline-primary btn-sm" href="/">Home</a>
+      </div>
+    </div>
+  @else
+
   @php
     $totalItem        = 0;
     $totalQty         = 0;
@@ -103,7 +113,7 @@
                   <span>Agree with the condition?</span>
                 </p> --}}
                 <p class="mt-3">
-                  <a class="btn btn-sm btn-outline-warning px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
+                  <a class="btn btn-sm btn-outline-primary px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
                   <a class="btn btn-sm btn-outline-info px-4" style="border-radius: 50px;" href="{{ route('home.shipping.product') }}">Preview order</a>
 
                     <button type="submit" onclick="return confirm('Are you sure to submit order?')" class="btn btn-sm btn-outline-success px-4 float-right" style="border-radius: 50px;">Submit Order</button>
@@ -248,4 +258,5 @@
 
 
   </div>
+  @endif
 @endsection

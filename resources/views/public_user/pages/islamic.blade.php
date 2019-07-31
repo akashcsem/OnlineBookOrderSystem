@@ -15,12 +15,21 @@
 @section('main-content')
   <div class="box py-3 mb-5" style="background: #4FBFA8; letter-spacing: 3px; text-transform: uppercase">
     <div class="container text-center text-light">
-        <h3 class="text-center font-weight-bold">Islamic Book Collection</h3>
+        <h3 class="text-center font-weight-bold">List of islamic books</h3>
     </div>
   </div>
 
-  <div class="my-5 py-5 text-center">
-    <h1>This Section will be update as soon as possible.</h1>
+  <div class="row">
+    {{-- ==============   Product Section =================  --}}
+    <div class="col-md-10 mx-auto">
+        <div class="mr-5">
+          @include('public_user.inc.product-card')
+        </div>
+        <div class="float-center mb-5">
+          {{ $products->links() }}
+        </div>
+    </div>
+    {{-- End Product Section --}}
   </div>
 
 @endsection

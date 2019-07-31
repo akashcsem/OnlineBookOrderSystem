@@ -15,8 +15,24 @@ use \PDF;
 
 class ProductShippingController extends Controller
 {
+
+
+  /*
+    #############################################################
+                        Product Shipping
+    #############################################################
+  */
     // Product shipping form
     public function productShipping() {
+      if (Cart::Content()->isEmpty()) {
+        return view('public_user.pages.shipping.shipping',
+        [
+            'activePage'   => "",
+            'cartProducts' => Cart::Content(),
+            'authors'      => Author::orderBy('NAME', 'asc')->get(),
+            'publications' => Publication::orderBy('NAME', 'asc')->get()
+        ]);
+      }
         return view('public_user.pages.shipping.shipping',
         [
           'activePage'   => "",
@@ -26,20 +42,12 @@ class ProductShippingController extends Controller
         ]);
     }
 
-    // checkout
-    public function productCheckout() {
-        return view('public_user.pages.shipping.checkout',
-        [
-            'activePage'   => "",
-            'cartProducts' => Cart::Content(),
-            'authors'      => Author::orderBy('name', 'asc')->get(),
-            'publications' => Publication::orderBy('name', 'asc')->get()
-        ]);
-    }
-
 
     // Store Shipping info in session
     public function cartShipping (Request $request) {
+      if (Cart::Content()->isEmpty()) {
+        return redirect()->back();
+      }
       $delivery_amount = array(30, 50, 70, 100, 100, 100, 90, 80, 0);
 
       $request->session()->put('customer_name', $request->customer_name);
@@ -60,19 +68,47 @@ class ProductShippingController extends Controller
         'address'         => 'required|min:11|max:255',
       ]);
 
-      return view('public_user.pages.shipping.checkout',
-      [
-          'activePage'   => "",
-          'cartProducts' => Cart::Content(),
-          'authors'      => Author::orderBy('name', 'asc')->get(),
-          'publications' => Publication::orderBy('name', 'asc')->get()
-      ]);
+      return redirect()->route('payment.checkout');
     }
 
+
+    /*
+      #############################################################
+                          Product Checkout
+      #############################################################
+    */
+
+
+    // checkout
+    public function productCheckout() {
+        return view('public_user.pages.shipping.checkout',
+        [
+            'activePage'   => "",
+            'cartProducts' => Cart::Content(),
+            'authors'      => Author::orderBy('name', 'asc')->get(),
+            'publications' => Publication::orderBy('name', 'asc')->get()
+        ]);
+    }
+
+
+
+
+    /*
+      #############################################################
+                          Payment Finalize
+      #############################################################
+    */
     // Submit Order
+
     public function orderSubmit(Request $request) {
         // if the payment type 1 it is payment by bkash and it must cash
         // status 0 means sales amount not paid
+        if (Cart::Content()->isEmpty()) {
+          return redirect()->back();
+        }
+        if (empty(Session::get('customer_name'))) {
+          return redirect()->route('home.shipping.product');
+        }
         if ($request->type == 1) {
           $status = 0;
         } else {
@@ -106,6 +142,10 @@ class ProductShippingController extends Controller
         foreach (Cart::Content() as $product) {
           $order_detail              = new OrderDetail();
 
+          $book                      = Product::find($product->id);
+          $book->sold += $product->qty;
+          $book->save();
+
           $order_detail->order_id    = $order->id;
           $order_detail->product_id  = $product->id;
           $order_detail->quantity    = $product->qty;
@@ -134,27 +174,30 @@ class ProductShippingController extends Controller
         $request->session()->put('delivery_charge', 0);
 
         // return order success view with the data below
-        return view('public_user.pages.cart.order_success',
-        [
-            'activePage'   => "",
-            'order'        => Order::where('id', $order->id)->first(),
-            'orderDetails' => OrderDetail::where('order_id', $order->id)->get(),
-            'products'     => Product::all(),
-            'authors'      => Author::orderBy('name', 'asc')->get(),
-            'cartProducts' => Cart::Content(),
-            'publications' => Publication::orderBy('name', 'asc')->get()
-        ]);
+        return redirect()->route('order.invoice', $order->id);
 
     }
 
 
-    // Save invoice as a pdf
-    public function saveInvoices($id) {
-        return PDF::loadView('public_user.pages.cart.invoice',
-        [
+    // get order invoice
+    public function orderInvoice($id) {
+      return view('public_user.pages.cart.order_success',
+      [
+          'activePage'   => "",
           'order'        => Order::where('id', $id)->first(),
-          'orderDetails' => OrderDetail::where('order_id', $id)->get(),
-          'products'     => Product::all()
-        ])->download('invoice.pdf');
+          // 'orderDetails' => OrderDetail::where('order_id', $id)->get(),
+          'products'     => Product::all(),
+          'authors'      => Author::orderBy('name', 'asc')->get(),
+          'cartProducts' => Cart::Content(),
+          'publications' => Publication::orderBy('name', 'asc')->get()
+      ]);
     }
+    // public function saveInvoices($id) {
+    //     return PDF::loadView('public_user.pages.cart.invoice',
+    //     [
+    //       'order'        => Order::where('id', $id)->first(),
+    //       'orderDetails' => OrderDetail::where('order_id', $id)->get(),
+    //       'products'     => Product::all()
+    //     ])->download('invoice.pdf');
+    // }
 }

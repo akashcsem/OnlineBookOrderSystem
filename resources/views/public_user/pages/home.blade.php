@@ -17,10 +17,7 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
       @if (session()->has('success'))
-        <div class="alert alert-success mt-3">
-          <strong>Success!</strong>
-          {{ Session::get('success') }}
-        </div>
+        @include('public_user.success-alert')
       @endif
     </div>
   </div>
@@ -39,7 +36,7 @@
 
 
           <!-- Category Lists Sidebar -->
-          <div class="col-md-3 " style="height: 100%;">
+          <div class="col-md-3 col-lg-3 col-sm-12" style="height: 100%;">
               @include('public_user.inc.sidebar-category')
           </div>
           <!-- End Category Lists Sidebar -->
@@ -47,13 +44,13 @@
 
 
           {{-- ==============   Product Section =================  --}}
-          <div class="col-md-9 pr-5">
-              <div class="mr-5">
-                @include('public_user.inc.product-card')
-              </div>
-              <div class="float-center mb-5">
+          <div class="col-md-8 col-lg-8 col-sm-10 mx-auto">
+            @include('public_user.inc.product-card')
+            <div class="row">
+              <div class="col-md-6 mb-5">
                 {{ $products->links() }}
               </div>
+            </div>
           </div>
           {{-- End Product Section --}}
 
