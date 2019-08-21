@@ -49,7 +49,7 @@ Route::get('/order/invoice/{id}', 'ProductShippingController@orderInvoice')->nam
 
 
 Route::get('/', 'PagesController@index'); //   public home page
-// Route::post('/{search?}', 'PagesController@index')->name('home'); //   public home page
+Route::post('/{search?}', 'PagesController@index')->name('home'); //   public home page
 Route::prefix('home')->group(function() {
   Route::get('/', 'PagesController@index')->name('home'); //   public home page
   Route::get('/by-category/{id}', 'PagesController@productByCategory')->name('productByCategory'); //   public home page

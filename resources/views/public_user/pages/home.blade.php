@@ -23,8 +23,12 @@
   </div>
 
 
+    {{-- Baner slider --}}
+    <div class="">
+      @include('public_user.inc.banner_slider')
+    </div>
 
-    @include('public_user.inc.banner_slider')
+    
     {{-- Book group --}}
     @include('public_user.inc.book_group')
 
@@ -59,7 +63,7 @@
       </div>
     </div><!-- End Product + Category sidebar-->
   {{-- </div> <!-- /.container--> --}}
-
+<br><br>
 @endsection
 
 @section('additional_script')

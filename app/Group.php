@@ -14,6 +14,6 @@ class Group extends Model
   ];
 
   public function product() {
-    return $this->hasMany('App\Author');
+    return $this->hasMany('App\Product');
   }
 }

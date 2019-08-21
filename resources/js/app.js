@@ -61,7 +61,13 @@ Vue.component('example-component', require('./components/Dashboard.vue').default
 const user = new Vue({
     el: '#vue-user',
     data: {
-      
+      cartTotal: 2
+    },
+
+    mountant: {
+      addCart() {
+        this.cartTotal++
+      }
     },
 
     components: {

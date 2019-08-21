@@ -10,7 +10,7 @@
 
 
 
-              <div class="card-tools ">
+              <div class="card-tools">
                 <table>
                   <tr>
                     <td>

@@ -1,5 +1,5 @@
 <!-- navbar-->
-<header class="header">
+<header class="header fixed-top">
 
 
   <nav class="navbar navbar-expand-lg">
@@ -154,14 +154,13 @@
 
                   {{-- Search input field big device--}}
                   @if ($activePage != "contact" && $activePage != "about_us")
-
-
                     <div id="search-not-mobile" class="navbar-collapse collapse">
-            				  <form role="search" class="ml-auto">
+            				  <form action="{{ route('home') }}" method="post" role="search" class="ml-auto">
+                        @csrf
               					<div class="input-group">
-              					  <input type="text" placeholder="Search big device" class="form-control">
+              					  <input data-toggle="tooltip" title="Search you prodact" name="search" type="text" placeholder="Search Product" class="form-control">
               					  <div class="input-group-append">
-              						    <button type="button" class="btn btn-primary">
+              						    <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-search"></i>
                               </button>
               					  </div>
@@ -170,9 +169,10 @@
             			  </div>
                   @endif
 
+
                   {{-- checkout for big device --}}
                   <div id="basket-overview" class="navbar-collapse collapse d-none ml-2 d-lg-block">
-                    <a href="{{ route('cart.index')}}" class="btn btn-primary navbar-btn">
+                    <a data-toggle="tooltip" title="Checkout Product" href="{{ route('cart.index')}}" class="btn btn-primary navbar-btn" data-toggle="tooltip">
                       <i class="fa fa-shopping-cart"></i>
                       <span>
                         @php $cartTotal = 0; @endphp
@@ -181,6 +181,7 @@
                         @endforeach
                         {{ $cartTotal }}
                       </span>
+                      {{-- @{{ cartTotal }} --}}
                     </a>
                   </div>
               </div>
@@ -202,11 +203,12 @@
         {{-- Search input field for collapse or small device --}}
         <div id="search" class="collapse">
           <div class="container">
-            <form role="search" class="ml-auto">
+            <form action="{{ route('home') }}" method="post" role="search" class="ml-auto">
+              @csrf
               <div class="input-group">
-                <input type="text" placeholder="Search small device" class="form-control">
+                <input name="search" data-toggle="tooltip" title="Search you prodact" type="text" placeholder="Search Product" class="form-control">
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
               </div>
             </form>

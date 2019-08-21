@@ -10,7 +10,7 @@
   <style media="screen">
     .aboutus-image-baner {
       /* background:  linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("{{ asset('public_user/images/aboutus-baner.jpeg') }}"); */
-      background: url("{{ asset('public_user/images/aboutus-baner.jpeg') }}");
+      background: url("{{ asset('public_user/images/akash.jgp') }}");
       min-height: 320px;
       background-repeat: no-repeat;
       background-size: cover;

@@ -42,21 +42,15 @@ class ProductController extends Controller
                   ->with('category')
                   ->with('group')
                   ->paginate(5);
-        return $products;
+                  return $products;
       }
       $products = Product::with('author')
                 ->with('category')
                 ->with('group')
                 ->with('publication')
                 ->where('name','like', '%' . $prduct_search . '%')
-                // ->join('groups', 'groups.id', '=', 'group_id')
-                // ->join('categories', 'categories.id', '=', 'category_id')
-                // ->join('authors', 'authors.id', '=', 'author_id')
-                // ->join('publications', 'publications.id', '=', 'publication_id')
-                // ->select('products.*', 'categories.name as catName', 'groups.name as groupName', 'authors.name as authorName', 'publications.name as publicationName')
-                // ->where('name','like','%'.'t'. '%')
                 ->paginate(5);
-      return $products;
+                return $products;
     }
 
     /**
@@ -64,10 +58,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-      $user_id = auth('api')->user()->id;
-      // return = User::find(Auth::user()->id);
-      // dd($request->all());
-      // return $request->all();
+        $user_id = auth('api')->user()->id;
         $this->validate($request, [
           'name'               => 'required|string|max:255|min:2',
           'category_id'        => 'required',
@@ -106,21 +97,7 @@ class ProductController extends Controller
           'image'              => $imgName,
           'description'        => $request['description']
         ]);
-        // return Product::create([
-        //   'name'               => $request['name'],
-        //   'group_id'           => $request['group_id'],
-        //   'category_id'        => $request['category_id'],
-        //   'price'              => $request['price'],
-        //   'qty'                => $request['qty'],
-        //   'offer'              => $request['offer'],
-        //   'isbn_no'            => $request['isbn_no'],
-        //   'admin_id'           => '1',
-        //   'author_id'          => $request['author_id'],
-        //   'publication_id'     => $request['publication_id'],
-        //   'publication_status' => $request['publication_status'],
-        //   'image'              => $imgName,
-        //   'description'        => $request['description'],
-        // ]);
+
     }
 
     /**

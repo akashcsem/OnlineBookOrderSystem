@@ -63442,7 +63442,7 @@ var render = function() {
                 _vm._v("Product Table\n\n          ")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-tools " }, [
+              _c("div", { staticClass: "card-tools" }, [
                 _c("table", [
                   _c("tr", [
                     _c("td", [
@@ -80659,7 +80659,14 @@ Vue.filter('myDate', function (text) {
 Vue.component('example-component', __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]);
 var user = new Vue({
   el: '#vue-user',
-  data: {},
+  data: {
+    cartTotal: 2
+  },
+  mountant: {
+    addCart: function addCart() {
+      this.cartTotal++;
+    }
+  },
   components: {
     'user-component': _components_Admin_Users_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'profile-component': _components_Admin_Profile_vue__WEBPACK_IMPORTED_MODULE_2__["default"],

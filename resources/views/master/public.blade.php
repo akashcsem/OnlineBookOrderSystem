@@ -14,6 +14,7 @@
 
   </head>
   <body>
+    <div id="vue-user">
     <!-- navbar-->
     @include('public_user.inc.nav-header')
 
@@ -23,6 +24,7 @@
       <div id="content">
 
 				 @yield('main-content')
+
 
       </div>
     </div>
@@ -36,6 +38,13 @@
 
     <!-- JavaScript files-->
     <script src="/js/app.js"></script>
+    <script type="text/javascript">
+    // Tooltips Initialization
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
 		@yield('additional_script')
+    </div>
   </body>
 </html>

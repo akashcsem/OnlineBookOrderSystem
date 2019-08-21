@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title> @yield('title') </title>
-		<link rel="stylesheet" href="/css/app.css">
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/custom/login.css') }}">
 		<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
 

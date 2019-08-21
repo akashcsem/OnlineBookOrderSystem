@@ -16,6 +16,7 @@ class PagesController extends Controller
       if ($request->search == null) {
         $search = "";
       } else {
+        // return $request->search . " akash";
         $search = $request->search;
       }
 
