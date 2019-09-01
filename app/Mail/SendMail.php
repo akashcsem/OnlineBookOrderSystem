@@ -29,7 +29,14 @@ class SendMail extends Mailable
      */
      public function build(request $request)
      {
+        // return "send mail";
          // return $this->view('public_user.pages.mail', ['msg'=>$request->message])->to($request->to);
-         return $this->view('public_user.pages.mail', ['msg'=>$request->message, 'to'=>$request->to, 'name'=>$request->name, 'mobile'=>$request->mobile])->to('akashcseuu026@gmail.com');
+         return $this->view('public_user.pages.mail',
+         [
+           'msg'   => $request->message,
+           'to'    => $request->to,
+           'name'  => $request->name,
+           'mobile'=> $request->mobile
+           ])->to('akashcseuu026@gmail.com');
      }
 }

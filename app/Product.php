@@ -40,4 +40,9 @@ class Product extends Model
   public function publication() {
     return $this->belongsTo('App\Publication');
   }
+  // relation with purchase detail
+  public function purchases()
+  {
+    return $this->belongsTo(PurchaseDetail::class);
+  }
 }

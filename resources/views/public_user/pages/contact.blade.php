@@ -6,7 +6,7 @@
 @endsection
 
 
-@section('additional_script')
+@section('addition-styles')
   <link rel="stylesheet" href="{{ asset('public_user/css/contact-us.css') }}" type="text/css">
 @endsection
 
@@ -18,16 +18,27 @@
         <img src="{{ asset('public_user/images/rocket_contact.png') }}" alt="Image not found">
       </div>
 
-      <form action="{{ route('send') }}" method="post">
-        {{ csrf_field() }}
+      {{-- form start --}}
+      {!! Form::open([ 'url' => route('send.contact'), 'method'=>'post', 'role'=>'form', 'enctype'=>'multipart/form-data', 'name'=>'productEditForm']) !!}
+
+
         @if(Session::has('contactMail'))
           <div id="successMessage" class="alert text-center" style="background: #D9EDF7">
-            <strong>Success!</strong> Your message is succe send.
+            <strong>Success!</strong> Your message is send.
           </div>
         @elseif(Session::has('name'))
           <div id="successMessage" class="alert text-center" style="background: #D9EDF7">
             <strong>warning!</strong> {{ Session::get('name') }}
           </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <h3 class="text-primary text-center">Drop us a contact</h3>
@@ -37,6 +48,7 @@
             <input class="form-control border-radius my-2" type="text" name="name" value="" placeholder="Your name *" title="Your Name">
             <input class="form-control border-radius my-2" type="text" name="to" value="" placeholder="Your Email *" title="Email Address">
             <input class="form-control border-radius my-2" type="text" name="mobile" value="" placeholder="Your Mobile" title="Mobile Number">
+
             <input class="mt-3 btn btn-success btn-block border-radius " type="submit" name="" value="Send Message">
           </div>
           <div class="col-md-6">
@@ -45,7 +57,7 @@
 
           </div>
         </div>
-      </form>
+      {!! Form::close() !!}
     </div>
 
     <div class="contact-form map mx-auto" style="background: #17ABCC">
@@ -55,7 +67,7 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+  {{-- <script type="text/javascript">
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip({
           placement : 'top'
@@ -64,5 +76,5 @@
     setTimeout(function() {
         $('#successMessage').fadeOut('fast');
       }, 3000); // <-- time in milliseconds
-  </script>
+  </script> --}}
 @endsection

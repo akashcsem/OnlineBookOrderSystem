@@ -1,8 +1,8 @@
 <!-- navbar-->
-<header class="header fixed-top">
+<header class="header">
 
 
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg sticky-top">
       {{-- container --}}
       <div class="container">
           {{-- Brand Logo --}}
@@ -134,7 +134,7 @@
                   <li class="nav-item"><a href="{{ route('islamic') }}" class="nav-link @if($activePage == "islamic") active @endif">Islamic Book</a></li>
 
                   {{-- bestseller menu --}}
-                  <li class="nav-item"><a href="{{ route('bestseller') }}" class="nav-link @if($activePage == "bestseller") active @endif">Best Seller</a></li>
+                  {{-- <li class="nav-item"><a href="{{ route('bestseller') }}" class="nav-link @if($activePage == "bestseller") active @endif">Best Seller</a></li> --}}
 
                   {{-- contact menu --}}
                   <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link @if($activePage == "contact") active @endif">Contact</a></li>

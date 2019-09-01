@@ -25,6 +25,8 @@ Route::apiResources(['author'=>'API\AuthorController']);
 Route::apiResources(['product'=>'API\ProductController']);
 Route::get('/product/search/{search}', 'API\ProductController@search');
 Route::apiResources(['publication'=>'API\PublicationController']);
+Route::apiResources(['supplier'=>'API\SupplierController']);
+Route::apiResources(['purchase'=>'API\PurchaseController']);
 
 
 // public user
@@ -32,3 +34,7 @@ Route::apiResources(['publication'=>'API\PublicationController']);
 Route::get('currentUser','API\UserController@currentUser');
 Route::get('category-list','API\CategoryController@category_list');
 Route::get('author-list','API\AuthorController@author_list');
+Route::get('supplier-list', 'API\SupplierController@supplier_list');
+Route::get('product-list', 'API\ProductController@product_list');
+
+Route::post('/purchase/products/{supplier}', 'API\PurchaseController@storeProducts');

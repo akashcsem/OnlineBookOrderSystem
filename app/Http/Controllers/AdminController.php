@@ -51,5 +51,14 @@ class AdminController extends Controller
     public function product() {
       return view('admin.product');
     }
+    public function supplier() {
+      return view('admin.supplier');
+    }
+    public function purchase() {
+      return view('admin.purchase');
+    }
+    public function purchase_list() {
+      return view('admin.purchase-list');
+    }
 
 }

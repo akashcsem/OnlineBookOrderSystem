@@ -31,6 +31,7 @@
         "moment": "^2.24.0",
         "sweetalert2": "^8.11.4",
         "vform": "^1.0.0",
+        "vue-cool-select": "^2.10.2",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.6"
     }

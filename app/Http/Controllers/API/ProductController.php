@@ -24,15 +24,14 @@ class ProductController extends Controller
                 ->with('category')
                 ->with('group')
                 ->paginate(5);
-      // $products = DB::table('products')
-      //           ->join('groups', 'groups.id', '=', 'group_id')
-      //           ->join('categories', 'categories.id', '=', 'category_id')
-      //           ->join('authors', 'authors.id', '=', 'author_id')
-      //           ->join('publications', 'publications.id', '=', 'publication_id')
-      //           ->select('products.*', 'categories.name as catName', 'groups.name as groupName', 'authors.name as authorName', 'publications.name as publicationName')
-      //           ->paginate(5);
       return $products;
       dd($products);
+    }
+
+    public function product_list()
+    {
+        return DB::table('products')
+            ->get(['name', 'price', 'id']);
     }
 
     public function search($prduct_search) {

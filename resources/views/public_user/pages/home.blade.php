@@ -28,7 +28,7 @@
       @include('public_user.inc.banner_slider')
     </div>
 
-    
+
     {{-- Book group --}}
     @include('public_user.inc.book_group')
 
@@ -50,11 +50,8 @@
           {{-- ==============   Product Section =================  --}}
           <div class="col-md-8 col-lg-8 col-sm-10 mx-auto">
             @include('public_user.inc.product-card')
-            <div class="row">
-              <div class="col-md-6 mb-5">
-                {{ $products->links() }}
-              </div>
-            </div>
+
+            
           </div>
           {{-- End Product Section --}}
 
@@ -64,6 +61,7 @@
     </div><!-- End Product + Category sidebar-->
   {{-- </div> <!-- /.container--> --}}
 <br><br>
+
 @endsection
 
 @section('additional_script')

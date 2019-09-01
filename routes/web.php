@@ -19,6 +19,9 @@ Route::get('/group', 'AdminController@group')->name('group');
 Route::get('/author', 'AdminController@author')->name('author');
 Route::get('/publication', 'AdminController@publication')->name('admin.publication');
 Route::get('/products', 'AdminController@product')->name('product');
+Route::get('/suppliers', 'AdminController@supplier')->name('supplier');
+Route::get('/purchase', 'AdminController@purchase')->name('purchase');
+Route::get('/purchase-list', 'AdminController@purchase_list')->name('purchase-list');
 
 
 Route::get('todays/orders/', 'OrderController@index')->name('todays.orders');
@@ -68,6 +71,8 @@ Route::prefix('home')->group(function() {
 
 
 // Contact Using Mail
-
-Route::post('send', 'SendingMailController@send')->name('send');
+// Route::post('/send', function (Request $request) {
+//     echo 'User';
+// });
+Route::post('send/message', 'SendingMailController@send')->name('send.contact');
 Route::get('email', 'SendingMailController@email');

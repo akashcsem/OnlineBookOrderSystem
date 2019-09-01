@@ -8,7 +8,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap CSS-->
+
 		@include('public_user.inc.styles')
     @yield('addition-styles')
 
@@ -36,8 +38,10 @@
 
 
 
+
+    </div>
     <!-- JavaScript files-->
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript">
     // Tooltips Initialization
       $(function () {
@@ -45,6 +49,5 @@
       })
     </script>
 		@yield('additional_script')
-    </div>
   </body>
 </html>

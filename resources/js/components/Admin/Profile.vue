@@ -31,19 +31,7 @@
                     <p class="card-text text-center">Gamil: {{ form.email }}</p>
                     <p class="card-text text-center">Mobile: {{ form.mobile }}</p>
 
-                    <!-- <ul class="list-group list-group-unbordered mb-3">
-                      <li class="list-group-item">
-                        <b>Followers</b> <a class="float-right">1,322</a>
-                      </li>
-                      <li class="list-group-item">
-                        <b>Following</b> <a class="float-right">543</a>
-                      </li>
-                      <li class="list-group-item">
-                        <b>Friends</b> <a class="float-right">13,287</a>
-                      </li>
-                    </ul> -->
 
-                    <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -51,6 +39,9 @@
               </div>
             </div>
             <!-- End Profile -->
+
+
+
 
             <!-- Change password -->
             <div class="row my-4">
@@ -62,17 +53,19 @@
                     <p class="text-muted text-center">You can change your password from here</p>
                     Old Password
                     <div class="input-group input-group-sm mb-2">
-                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                      <input type="password" v-model="form_password.password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                     New Password
                     <div class="input-group input-group-sm mb-2">
-                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                      <input type="password" v-model="form_password.newPassword" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                     Confirm Password
                     <div class="input-group input-group-sm mb-2">
-                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                      <input type="password" v-model="form_password.confirmPassword" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
-                    <a href="#" class="btn btn-success btn-block">Submit</a>
+
+                    <small v-if="!passwordMatch" class="text-danger">Passowrd Not Match</small>
+                    <a href="#" class="btn btn-success btn-block" @click="changePassword">Submit</a>
                   </div>
                 </div>
 
@@ -158,6 +151,8 @@
         data() {
           return {
             showImage: "img/profile/avatar.png",
+            passwordMatch: true,
+            passwordMessage: "Password not match",
             form: new Form({
               id: '',
               name: '',
@@ -173,7 +168,9 @@
             }),
             form_password: new Form({
               id: '',
-              password: ''
+              password: '',
+              newPassword: '',
+              confirmPassword: '',
             })
           }
         },
@@ -189,6 +186,24 @@
           loadUsers() {
             axios.get("api/profile")
             .then(({ data })=>(this.form.fill(data)));
+          },
+
+          changePassword() {
+            if (this.form_password.newPassword.length < 8) {
+              this.passwordMatch = false;
+              this.passwordMessage = "Password length must be 8 character";
+            } else if (this.form_password.confirmPassword.length < 8) {
+                this.passwordMatch = false;
+                this.passwordMessage = "Password length must be 8 character";
+            }
+            else if (this.form_password.newPassword == this.form_password.confirmPassword) {
+              console.log(strlen(this.form_password.confirmPassword));
+              console.log("passowrd match");
+            } else {
+              this.passwordMatch = false;
+              console.log("password not match");
+            }
+            console.log(this.form_password.newPassword + " " + this.form_password.confirmPassword);
           },
           updateInfo() {
             this.$Progress.start();

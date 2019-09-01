@@ -11,6 +11,9 @@ import CategoryComponent from './components/Admin/Category.vue'
 import AuthorComponent from './components/Admin/Author.vue'
 import PublicationComponent from './components/Admin/Publication.vue'
 import ProductComponent from './components/Admin/Product.vue'
+import SupplierComponent from './components/Admin/Supplier.vue'
+import PurchaseComponent from './components/Admin/Purchase.vue'
+import PurchaseLComponent from './components/Admin/PurchaseList.vue'
 
 
 // Date format
@@ -19,6 +22,8 @@ import { Form, HasError, AlertError } from 'vform'
 import VueProgressBar from 'vue-progressbar'
 // ES6 Modules or TypeScript
 import swal from 'sweetalert2'
+import VueSelect from 'vue-cool-select'
+
 
 window.Vue = require('vue');
 window.Form = Form;
@@ -41,14 +46,27 @@ const toast = swal.mixin({
   timer: 3000
 });
 window.toast = toast;
-
+Vue.use(VueSelect, {
+  theme: 'bootstrap' // or 'material-design'
+})
 
 Vue.filter('upText', function(text) {
   return text.toUpperCase()
 });
 
+Vue.filter("capitalize", function(text) {
+    return text == null ? "" : text.charAt(0).toUpperCase() + text.slice(1);
+});
+
 Vue.filter('myDate', function(text) {
   return moment(text).format("MMM / DD / YYYY");
+});
+
+Vue.filter("bdCurrency", function(number) {
+    const formatter = new Intl.NumberFormat("en-BD", {
+        minimumFractionDigits: 2
+    }).format(number);
+    return formatter;
 });
 // window.Fire = new Vue();
 
@@ -79,6 +97,9 @@ const user = new Vue({
       'author-component': AuthorComponent,
       'publication-component': PublicationComponent,
       'product-component': ProductComponent,
+      'supplier-component': SupplierComponent,
+      'purchase-component': PurchaseComponent,
+      'purchase-list-component': PurchaseLComponent,
 
     }
 });

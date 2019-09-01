@@ -5,7 +5,7 @@
   Product Shipping
 @endsection
 
-@section('additional_script')
+@section('addition-styles')
   <link rel="stylesheet" href="{{ asset('css/custom/setting_prepend.css') }}" type="text/css">
 @endsection
 

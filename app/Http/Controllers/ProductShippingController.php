@@ -103,6 +103,7 @@ class ProductShippingController extends Controller
     public function orderSubmit(Request $request) {
         // if the payment type 1 it is payment by bkash and it must cash
         // status 0 means sales amount not paid
+        // dd($request->all());
         if (Cart::Content()->isEmpty()) {
           return redirect()->back();
         }

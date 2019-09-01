@@ -15,11 +15,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('type');
+            $table->integer('type')->default(0);
             $table->integer('order_id');
-            $table->integer('status');
-            $table->integer('amount');
-            $table->string('transaction_id')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('amount')->nullable();
+            $table->string('mobile_banking_id')->nullable();
             $table->timestamps();
         });
     }

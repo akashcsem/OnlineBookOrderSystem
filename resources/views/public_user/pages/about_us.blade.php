@@ -5,12 +5,12 @@
   About Us
 @endsection
 
-@section('additional_script')
-  <link rel="stylesheet" href="{{asset('public_user/css/about-us.css')}}" type="text/css">
+@section('addition-styles')
+  <link rel="stylesheet" href="{{asset('css/custom/about_us.css')}}" type="text/css">
   <style media="screen">
     .aboutus-image-baner {
       /* background:  linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("{{ asset('public_user/images/aboutus-baner.jpeg') }}"); */
-      background: url("{{ asset('public_user/images/akash.jgp') }}");
+      background: url("{{ asset('public_user/images/aboutus-baner.jpeg') }}");
       min-height: 320px;
       background-repeat: no-repeat;
       background-size: cover;
@@ -27,7 +27,7 @@
 @section('main-content')
   <div class="bg m-0" style="background: white !important">
 
-      <!-- Top baner -->
+    <!-- Top baner -->
     <div class="aboutus-image-baner pl-5 text-primary">
       <h2 class="font-weight-bold display-4">About Us</h2>
       <p>To know the details more about us see the information below</p>
@@ -39,6 +39,9 @@
         <li class="breadcrumb-item active" aria-current="page">About Us</li>
     </ol>
 
+
+
+    {{-- Service --}}
     <div class="container">
       <div class="row p-3">
         <div class="left-description col-md-6 px-5">
@@ -56,7 +59,13 @@
       </div>
     </div>
 
-    <div class="mt-5">
+
+
+
+
+    {{-- Team Members --}}
+
+    <div class="my-5">
       <div class="row">
         <div class="col-md-6 mx-auto">
           <h1 class="text-center font-weight-bold display-4">Our Team</h1>
@@ -72,11 +81,11 @@
 
     <!-- Profile Card Section -->
     <div class="row mt-5">
-      <div class="col-md-10 mx-auto">
+      <div class=" col-md-10 col-sm-8 mx-auto">
         <div class="row">
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-8 mx-auto mb-2">
             <div class="card">
-              <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Suchi.jpg') }}" alt="" style="height: 250px; width: 90%">
+              <img class="card-img mx-auto mt-0" src="{{ asset('public_user/Images/team/Suchi.jpg') }}" alt="" style="height: 220px;">
               <div class="card-body pt-1 text-center">
                 <h5 class="font-weight-bold text-primary pt-2">Iffat Jahan Suchi</h5>
                 <hr>
@@ -92,9 +101,9 @@
           </div>
 
 
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
-            <div class="card">
-              <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Akash.jpg') }}" alt="" style="height: 250px; width: 90%">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-8 mx-auto mb-2">
+            <div class="card mx-0 px-0">
+              <img class="card-img mx-auto mt-0" src="{{ asset('public_user/Images/team/Akash.jpg') }}" alt="" style="height: 220px;">
               <div class="card-body pt-1 text-center">
                 <h5 class="font-weight-bold text-primary pt-2">ASM Akash</h5>
                 <hr>
@@ -110,9 +119,9 @@
           </div>
 
 
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
-            <div class="card">
-              <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Shathi.jpg') }}" alt="" style="height: 250px; width: 90%">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6 mx-0 mb-2">
+            <div class="card mx-0 px-0">
+              <img class="card-img mx-auto mt-0" src="{{ asset('public_user/Images/team/Shathi.jpg') }}" alt="" style="height: 220px;">
               <div class="card-body pt-1 text-center">
                 <h5 class="font-weight-bold text-primary pt-2">Sharmin Jahan Shathi</h5>
                 <hr>
@@ -128,9 +137,9 @@
           </div>
 
 
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mx-auto mb-2">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-8 mx-auto mb-2">
             <div class="card">
-              <img class="card-img mx-auto mt-2" src="{{ asset('public_user/Images/team/Imran.jpg') }}" alt="" style="height: 250px; width: 90%">
+              <img class="card-img mx-auto mt-0" src="{{ asset('public_user/Images/team/Imran.jpg') }}" alt="" style="height: 220px;">
               <div class="card-body pt-1 text-center">
                 <h5 class="font-weight-bold text-primary pt-2">Ahmed Imran</h5>
                 <hr>

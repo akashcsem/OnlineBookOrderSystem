@@ -19,15 +19,11 @@ class CreateProductsTable extends Migration
             $table->integer('group_id')->nullable();
             $table->integer('category_id');
             $table->double('price');
-            $table->integer('qty')->nullable();
-            $table->integer('sold')->nullable();
-            $table->integer('islamic')->default(0);
             $table->integer('offer')->default(0);
             $table->string('isbn_no')->nullable();
-            $table->integer('admin_id')->default(1);
+            $table->integer('user_id')->default(1);
             $table->integer('author_id');
             $table->tinyInteger('publication_id')->nullable();
-            $table->string('publication_status')->default(1);
             $table->string('image');
             $table->text('description')->nullable();
             $table->rememberToken();

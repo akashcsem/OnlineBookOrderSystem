@@ -66,11 +66,7 @@
          </div> 	<!-- end carousel inner -->
 
        </div>
-       <div class="row float-right ">
-         <div class="mb-5">
-           {{ $products->links() }}
-         </div>
-       </div>
+  
    </div>    <!-- New Publications end -->
 
 

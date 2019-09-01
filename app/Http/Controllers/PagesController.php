@@ -24,7 +24,7 @@ class PagesController extends Controller
       ->orWhere('price','like','%'.$search.'%')
       ->orWhereHas('author', function ($query) use ($search) {
           $query->where('name', 'like', '%'.$search.'%');
-      })->paginate(20);
+      })->simplePaginate(20);
 
       return view('public_user.pages.home',
       [

@@ -72,4 +72,5 @@
       $i++;
     @endphp
   @endwhile
+  {{ $products->links() }}
 </div>

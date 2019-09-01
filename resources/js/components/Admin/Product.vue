@@ -4,7 +4,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header" style="background: #563D7C">
-              <h3 class="card-title text-light">Product Table
+              <h3 class="card-title text-light">Books Table
 
               </h3>
 
