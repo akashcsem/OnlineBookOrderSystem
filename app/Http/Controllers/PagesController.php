@@ -145,8 +145,8 @@ class PagesController extends Controller
       'public_user.pages.all_writer',
       [
         'cartProducts' => Cart::Content(),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "writer"
       ]
     );
@@ -163,7 +163,7 @@ class PagesController extends Controller
         'products'          => Product::orderBy('name', 'asc')->get(),
         'cartProducts'      => Cart::Content(),
         'authors'           => Author::orderBy('name', 'asc')->get(),
-        'publications'      => Publication::orderBy('NAME', 'asc')->get(),
+        'publications'      => Publication::orderBy('name', 'asc')->get(),
         'curentPublication' => DB::table('publications')->where('id', $id)->first(),
         'activePage'        => "publication",
         'categories'        => Category::orderBy('name', 'asc')->get()
@@ -179,8 +179,8 @@ class PagesController extends Controller
       'public_user.pages.publication_list',
       [
         'cartProducts' => Cart::Content(),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "publication"
       ]
     );
@@ -212,7 +212,7 @@ class PagesController extends Controller
         'products'     => $products,
         'cartProducts' => Cart::Content(),
         'authors'      => Author::orderBy('name', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "novel",
         'categories'   => $categories
       ]
@@ -227,8 +227,8 @@ class PagesController extends Controller
       'public_user.pages.contact',
       [
         'cartProducts' => Cart::Content(),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "contact"
       ]
     );
@@ -242,8 +242,8 @@ class PagesController extends Controller
       'public_user.pages.about_us',
       [
         'cartProducts' => Cart::Content(),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "about_us"
       ]
     );
@@ -258,8 +258,8 @@ class PagesController extends Controller
       [
         'cartProducts' => Cart::Content(),
         'products'     => Product::take(12)->orderBy('sold', 'desc')->get(),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "bestseller"
       ]
     );
@@ -274,8 +274,8 @@ class PagesController extends Controller
       [
         'cartProducts' => Cart::Content(),
         'products'     => Product::where('islamic', 1)->paginate(15),
-        'authors'      => Author::orderBy('NAME', 'asc')->get(),
-        'publications' => Publication::orderBy('NAME', 'asc')->get(),
+        'authors'      => Author::orderBy('name', 'asc')->get(),
+        'publications' => Publication::orderBy('name', 'asc')->get(),
         'activePage'   => "islamic"
       ]
     );
