@@ -7,6 +7,7 @@ use App\Product;
 use App\Author;
 use App\Publication;
 use App\Category;
+use App\Group;
 use Cart;
 use DB;
 
@@ -37,7 +38,8 @@ class PagesController extends Controller
         'selectedCategory' => 0,
         'selectedGroup'    => 0,
         'activePage'       => "home",
-        'categories'       => Category::orderBy('name', 'asc')->get()
+        'categories'       => Category::orderBy('name', 'asc')->get(),
+        'groups'           => Group::get()
       ]
     );
   }
@@ -62,7 +64,8 @@ class PagesController extends Controller
         'publications'     => Publication::orderBy('name', 'asc')->get(),
         'activePage'       => "home",
         'categories'       => Category::orderBy('name', 'asc')->get(),
-        'selectedGroup'    => 0
+        'selectedGroup'    => 0,
+        'groups'           => Group::get()
       ]
     );
   }
@@ -87,7 +90,8 @@ class PagesController extends Controller
         'publications'    => Publication::orderBy('name', 'asc')->get(),
         'activePage'      => "home",
         'categories'      => Category::orderBy('name', 'asc')->get(),
-        'selectedGroup'   => $id
+        'selectedGroup'   => $id,
+        'groups'           => Group::get()
       ]
     );
   }
