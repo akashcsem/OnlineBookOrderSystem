@@ -92,7 +92,7 @@
               <form action="{{ route('order.submit') }}" method="post">
                 @csrf
                 <input type="hidden" name="type" value="0">
-                <input type="hidden" name="amount" value="@php echo $grandTotal; @endphp ">
+                <input type="hidden" name="amount" value="<?php echo $grandTotal; ?>">
                 <input type="hidden" name="transaction_id" value="">
 
                 <div class="">
@@ -108,10 +108,7 @@
                   <input type="checkbox" required class="custom-control-input" id="aggrement">
                   <label class="custom-control-label font-weight-normal pt-1" style="font-size: 14px; cursor: pointer;" for="aggrement"> Agree with the condition? </label>
                 </div>
-                {{-- <p>
-                  <input type="checkbox" id="aggrement" value="">
-                  <span>Agree with the condition?</span>
-                </p> --}}
+                
                 <p class="mt-3">
                   <a class="btn btn-sm btn-outline-primary px-4" style="border-radius: 50px;" href="{{ asset('/') }}">Continue Shopping</a>
                   <a class="btn btn-sm btn-outline-info px-4" style="border-radius: 50px;" href="{{ route('home.shipping.product') }}">Preview order</a>
@@ -180,7 +177,7 @@
                       <form action="{{ route('order.submit') }}" method="post">
                         @csrf
                         <input type="hidden" name="type" value="1">
-                        <input type="hidden" name="amount" value="@php echo $grandTotal; @endphp ">
+                        <input type="hidden" name="amount" value="<?php echo $grandTotal; ?> ">
 
                         <p class="mt-2">TrxID:
                           <input class="px-2" required name="transaction_id" style="height: 35px; border: 1px solid #0069D9; border-radius: 5px;" type="text" placeholder="Your transaction id"></p>

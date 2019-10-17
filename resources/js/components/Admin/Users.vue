@@ -29,9 +29,9 @@
                   <td> {{ user.type | upText }} </td>
                   <td> {{ user.created_at | myDate }} </td>
                   <td>
-                    <a href="#" @click="editModal(user)">
+                    <!-- <a href="#" @click="editModal(user)">
                       <i class="fas fa-edit green" style="font-size: 25px;"></i>
-                    </a> &nbsp;
+                    </a> &nbsp; -->
                     <a href="#" @click="deleteUser(user.id)">
                       <i class="fas fa-trash red" style="font-size: 25px;"></i>
                     </a>

@@ -42,16 +42,31 @@
             @php
               $item = 1;
               $itemTotal = 0;
+              
             @endphp
             @foreach ($order->orderedProduct as $product)
               <tr>
+              <td>@php echo $item++; @endphp</td>
+              <td>
+                @foreach ($products as $pro)
+                    @if ($product->product_id == $pro->id)
+                        {{ $pro->name }}
+                    @endif
+                @endforeach
+              </td>
+              <td>{{ $product->quantity }}</td>
+                <td>{{ $product->price }} Tk.</td>
+                @php $itemTotal += $product->quantity * $product->price; @endphp
+                <td class="text-right pr-4">{{ $product->quantity * $product->price }} Tk.</td>
+              </tr>
+              {{-- <tr>
                 <td>@php echo $item++; @endphp</td>
                 <td>{{ $products[$product->id]->name }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->price }} Tk.</td>
                 @php $itemTotal += $product->quantity * $product->price; @endphp
                 <td class="text-right pr-4">{{ $product->quantity * $product->price }} Tk.</td>
-              </tr>
+              </tr> --}}
             @endforeach
             <tr>
               <td colspan="3"></td>
@@ -66,7 +81,7 @@
             <tr>
               <td colspan="3"></td>
               <td>Tax</td>
-              <td class="text-right pr-4">{{ $order->tax}} Tk.</td>
+              <td class="text-right pr-4">{{ $order->tax }} Tk.</td>
             </tr>
             <tr>
               <td colspan="3"></td>
@@ -125,6 +140,8 @@
   @endif
 @endsection
 
+
+
 @section('additional_script')
   <script>
     function printInvoice(el) {
@@ -136,3 +153,4 @@
     }
   </script>
 @endsection
+{{-- http://127.0.0.1:8000/order/invoice/27 --}}

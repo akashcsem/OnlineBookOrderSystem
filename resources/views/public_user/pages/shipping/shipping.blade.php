@@ -221,7 +221,7 @@
                   </div>
                   <input name="customer_name" type="text" class="form-control
                   @if($errors->has('customer_name'))is-invalid @endif
-                  " value="@php echo $customer_name @endphp" placeholder="Your Name" autofocus>
+                  " value="<?php echo $customer_name; ?>" placeholder="Your Name" autofocus>
                 </div>
                 <div class="text-danger ml-auto text-center">
                   <small>{{ $errors->first('customer_name') }}</small>
@@ -235,7 +235,7 @@
                   </div>
                   <input name="customer_mobile" type="number" class="form-control
                   @if($errors->has('customer_mobile'))is-invalid @endif
-                  " value="@php echo $customer_mobile @endphp" placeholder="Mobile number" autofocus>
+                  " value="<?php echo $customer_mobile ?>" placeholder="Mobile number" autofocus>
                 </div>
                 <div class="text-danger ml-auto text-center">
                   <small>{{ $errors->first('customer_mobile') }}</small>
@@ -247,12 +247,10 @@
                     <label class="input-group-text">Email Address</label>
                   </div>
                   <input name="email" type="email" class="form-control
-                @if($errors->has('email'))is-invalid @endif
-                " value="@php echo $email @endphp" placeholder="Email Address" autofocus>
+                
+                " value="<?php echo $email; ?>" placeholder="Email Address" autofocus>
               </div>
-              <div class="text-danger ml-auto text-center">
-                <small>{{ $errors->first('email') }}</small>
-              </div>
+              
 
 
 
@@ -263,7 +261,7 @@
                     <label class="input-group-text">Contact Person</label>
                   </div>
                   <input name="contact_person" class="form-control @if($errors->has('contact_person'))is-invalid @endif
-                  " value="@php echo $contact_person @endphp" placeholder="Contact Person/Reciever" autofocus>
+                  " value="<?php echo $contact_person; ?>" placeholder="Contact Person/Reciever" autofocus>
                 </div>
                 <div class="text-danger ml-auto text-center">
                   <small>{{ $errors->first('contact_person') }}</small>
@@ -275,7 +273,7 @@
                     <label class="input-group-text">Mobile Number</label>
                   </div>
                   <input name="reciver_number" class="form-control @if($errors->has('reciver_number'))is-invalid @endif
-                  " value="@php echo $reciver_number @endphp" placeholder="01xxxxxxxxx" autofocus>
+                  " value="<?php echo $reciver_number; ?>" placeholder="01xxxxxxxxx" autofocus>
                 </div>
                 <div class="text-danger ml-auto text-center">
                   <small>{{ $errors->first('reciver_number') }}</small>
@@ -289,10 +287,10 @@
                   </div>
 
                   <select class="form-cntrol" name="zone">
-                    <option value="@php echo $zone @endphp">@php echo $zoneOption[$zone] @endphp</option>
+                    <option value="<?php echo $zone; ?>"><?php echo $zoneOption[$zone]; ?></option>
                     @for ($i=0; $i < 9; $i++)
                       @if ($i != $zone)
-                      <option value="@php echo $i @endphp">@php echo $zoneOption[$i] @endphp</option>
+                      <option value="<?php echo $i; ?>"><?php echo $zoneOption[$i]; ?></option>
                       @endif
                     @endfor
 

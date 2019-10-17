@@ -89,7 +89,19 @@
             </div>
           </div>
         </div>
-
+        @php
+          $totalBook = 0;
+        @endphp
+        @foreach ($products as $book)
+            @if ($curentAuthor->id == $book->author_id)
+              @php
+                $totalBook++;
+              @endphp
+            @endif
+        @endforeach
+        @if ($totalBook > 0)
+            
+        
         <!-- New publication -->
         <div  class="row m-0 p-0">
 
@@ -102,10 +114,6 @@
             </div>
             <!-- carousel inner -->
             <div class="row clearfix px-3">
-
-
-                {{-- <div class="carousel-item active">  <!-- carousel item 1 -->
-                  <div class="row justify-content" > --}}
 
                     @foreach ($products as $book)
                       @if ($curentAuthor->id == $book->author_id)
@@ -136,19 +144,12 @@
 
                     @endif
                     @endforeach
-{{--
-                </div>
-              </div> --}}
+
             </div> 	<!-- end carousel inner -->
           </div>
 
-        {{-- <div class="w-100 row justify-content-center text-success h-2 py-2 my-4">
-            <div class="col-md-10 text-right">
-              <h4><a class="ml-auto btn btn-success" href="#">More Like...</a> </h4>
-            </div>
-        </div> --}}
-      </div>    <!-- New Publications end -->
-
+        </div>    <!-- New Publications end -->
+        @endif
 
 </div>   <!-- bg end -->
 @endsection

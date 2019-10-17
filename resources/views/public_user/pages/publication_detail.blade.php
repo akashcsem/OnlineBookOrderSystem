@@ -90,17 +90,29 @@
             </div>
           </div>
         </div>
-
+        @php
+          $totalBook = 0;
+        @endphp
+        @foreach ($products as $book)
+            @if ($curentPublication->id == $book->publication_id)
+              @php
+                $totalBook++;
+              @endphp
+            @endif
+        @endforeach
+        @if ($totalBook > 0)
         <!-- New publication -->
         <div  class="row m-0 p-0">
 
 
 
           <div id="new_published" class="carousel slide col-md-10 mx-auto px-0">
-
+            
+                
             <div class="text-center py-3" style="background: #B3DCED">
               <h3>More Related Books of {{ $curentPublication->name }} Publication's </h3>
             </div>
+            
             <!-- carousel inner -->
             <div class="row my-5 clearfix px-3">
 
@@ -136,6 +148,7 @@
                 @endforeach
 
             </div> 	<!-- end carousel inner -->
+            @endif
           </div>
 
       </div>    <!-- New Publications end -->

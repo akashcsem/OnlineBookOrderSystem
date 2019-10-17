@@ -48,14 +48,14 @@
                     <span class="fa fa-edit" aria-hidden="true"></span>
                   </div>
                   <div class="text-danger text-center mt-3"><h4>Rejected</h4></div>
-                  <div class="text-danger text-center mt-2"><h1>234</h1></div>
+                  <div class="text-danger text-center mt-2"><h1>0</h1></div>
               </div>
           </div>
           <div class="col-md-3">
               <div class="card border-primary mx-sm-1 p-3">
                   <div class="card border-primary shadow text-primary p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
                   <div class="text-primary text-center mt-3"><h4>Completed</h4></div>
-                  <div class="text-primary text-center mt-2"><h1>234</h1></div>
+                  <div class="text-primary text-center mt-2"><h1>0</h1></div>
               </div>
           </div>
 

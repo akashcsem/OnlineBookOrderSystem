@@ -4357,9 +4357,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -67283,24 +67302,6 @@ var render = function() {
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
-                                return _vm.editModal(user)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fas fa-edit green",
-                              staticStyle: { "font-size": "25px" }
-                            })
-                          ]
-                        ),
-                        _vm._v("  \n                "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
                                 return _vm.deleteUser(user.id)
                               }
                             }
@@ -67793,7 +67794,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-info text-center mt-2" }, [
-            _c("h2", [_vm._v("3")])
+            _c("h2", [_vm._v("0")])
           ])
         ])
       ]),
@@ -67814,11 +67815,11 @@ var staticRenderFns = [
           ),
           _vm._v(" "),
           _c("div", { staticClass: "text-danger text-center mt-3" }, [
-            _c("h4", [_vm._v("Cars")])
+            _c("h4", [_vm._v("Car")])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-danger text-center mt-2" }, [
-            _c("h1", [_vm._v("234")])
+            _c("h1", [_vm._v("0")])
           ])
         ])
       ]),
@@ -67843,7 +67844,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-primary text-center mt-2" }, [
-            _c("h1", [_vm._v("234")])
+            _c("h1", [_vm._v("0")])
           ])
         ])
       ])
